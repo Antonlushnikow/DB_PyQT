@@ -1,0 +1,5 @@
+2021-10-06 22:47:04,723 - INFO       - Listen :7777
+2021-10-06 22:49:20,538 - INFO       - Host ('127.0.0.1', 57756) has connected
+2021-10-06 22:49:20,538 - INFO       - Message from ('127.0.0.1', 57756) was received
+2021-10-06 22:49:20,538 - DEBUG      - guest's message is correct
+2021-10-06 22:49:20,538 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 57756)
