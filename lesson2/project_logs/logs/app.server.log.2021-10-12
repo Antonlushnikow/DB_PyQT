@@ -1,0 +1,109 @@
+2021-10-12 16:58:35,204 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 16:58:35,219 - INFO       - Listen :7777
+2021-10-12 16:58:55,367 - INFO       - Host ('127.0.0.1', 56536) has connected
+2021-10-12 17:51:19,100 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 17:51:19,112 - INFO       - Listen :7777
+2021-10-12 17:51:32,420 - INFO       - Host ('127.0.0.1', 53283) has connected
+2021-10-12 17:52:28,627 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 17:52:28,643 - INFO       - Listen :7777
+2021-10-12 17:52:57,275 - INFO       - Host ('127.0.0.1', 53645) has connected
+2021-10-12 17:56:34,875 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 17:56:34,888 - INFO       - Listen :7777
+2021-10-12 17:56:38,783 - INFO       - Host ('127.0.0.1', 62772) has connected
+2021-10-12 18:00:55,583 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 18:01:14,025 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 18:01:14,036 - INFO       - Listen :7777
+2021-10-12 18:01:14,436 - INFO       - Host ('127.0.0.1', 62643) has connected
+2021-10-12 18:07:38,524 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 18:07:38,535 - INFO       - Listen :7777
+2021-10-12 18:07:54,512 - INFO       - Host ('127.0.0.1', 59442) has connected
+2021-10-12 18:07:56,674 - INFO       - Message from ('127.0.0.1', 59442) was received
+2021-10-12 18:07:56,675 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=296, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59442)>, {'action': 'message', 'time': 1634044076.6737204, 'user': {'account_name': 'guest'}, 'message': 'werwe'}, []), {}. Вызвана из функции main
+2021-10-12 18:30:24,456 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 18:30:24,462 - INFO       - Listen :7777
+2021-10-12 18:30:35,502 - INFO       - Host ('127.0.0.1', 50285) has connected
+2021-10-12 18:30:38,795 - INFO       - Message from ('127.0.0.1', 50285) was received
+2021-10-12 18:30:38,798 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=916, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50285)>, {'action': 'message', 'time': 1634045438.7941067, 'user': {'account_name': 'guest'}, 'message': 'dfgdfg'}, []), {}. Вызвана из функции main
+2021-10-12 18:32:44,454 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 18:32:44,461 - INFO       - Listen :7777
+2021-10-12 18:32:47,854 - INFO       - Host ('127.0.0.1', 55815) has connected
+2021-10-12 18:32:52,667 - INFO       - Message from ('127.0.0.1', 55815) was received
+2021-10-12 18:32:52,670 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=836, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55815)>, {'action': 'message', 'time': 1634045572.666301, 'user': {'account_name': 'guest'}, 'message': 'ewrsef'}, []), {}. Вызвана из функции main
+2021-10-12 18:33:33,756 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 18:33:33,763 - INFO       - Listen :7777
+2021-10-12 18:33:38,858 - INFO       - Host ('127.0.0.1', 55979) has connected
+2021-10-12 18:33:41,075 - INFO       - Message from ('127.0.0.1', 55979) was received
+2021-10-12 18:33:41,078 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=744, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55979)>, {'action': 'message', 'time': 1634045621.0742176, 'user': {'account_name': 'guest'}, 'message': 'dsfs'}, []), {}. Вызвана из функции main
+2021-10-12 18:55:28,836 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 18:55:28,843 - INFO       - Listen :7777
+2021-10-12 18:55:48,614 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 18:55:48,621 - INFO       - Listen :7777
+2021-10-12 18:55:55,759 - INFO       - Host ('127.0.0.1', 62713) has connected
+2021-10-12 18:55:58,883 - INFO       - Message from ('127.0.0.1', 62713) was received
+2021-10-12 18:56:05,065 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=828, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62713)>, {'action': 'message', 'time': 1634046958.882595, 'user': {'account_name': 'guest'}, 'message': 'sdfsdf'}, []), {}. Вызвана из функции main
+2021-10-12 19:01:00,548 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:01:00,556 - INFO       - Listen :7777
+2021-10-12 19:01:18,046 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:01:18,053 - INFO       - Listen :7777
+2021-10-12 19:01:39,693 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:01:39,705 - INFO       - Listen :7777
+2021-10-12 19:02:33,216 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:02:33,227 - INFO       - Listen :7777
+2021-10-12 19:03:23,975 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:03:23,986 - INFO       - Listen :7777
+2021-10-12 19:04:07,238 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:04:07,251 - INFO       - Listen :7777
+2021-10-12 19:05:04,829 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:05:04,842 - INFO       - Listen :7777
+2021-10-12 19:07:13,505 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:07:13,516 - INFO       - Listen :7777
+2021-10-12 19:07:48,187 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 19:07:48,198 - INFO       - Listen :7777
+2021-10-12 19:10:28,908 - INFO       - Host ('127.0.0.1', 52021) has connected
+2021-10-12 19:10:31,219 - INFO       - Message from ('127.0.0.1', 52021) was received
+2021-10-12 19:10:31,220 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=404, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52021)>, {'action': 'message', 'time': 1634047831.218269, 'user': {'account_name': 'guest'}, 'message': 'fsdfsd'}, []), {}. Вызвана из функции main
+2021-10-12 20:21:18,964 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 20:21:18,975 - INFO       - Listen :7777
+2021-10-12 20:21:41,725 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 20:21:41,736 - INFO       - Listen :7777
+2021-10-12 20:21:48,437 - INFO       - Host ('127.0.0.1', 51785) has connected
+2021-10-12 20:21:52,596 - INFO       - Message from ('127.0.0.1', 51785) was received
+2021-10-12 20:21:52,597 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 51785)>, {'action': 'message', 'time': 1634052112.5961683, 'user': {'account_name': 'guest'}, 'message': 'sdfsd'}, []), {}. Вызвана из функции main
+2021-10-12 20:27:16,862 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 20:27:16,869 - INFO       - Listen :7777
+2021-10-12 20:27:21,203 - INFO       - Host ('127.0.0.1', 65513) has connected
+2021-10-12 20:27:24,942 - INFO       - Message from ('127.0.0.1', 65513) was received
+2021-10-12 20:27:32,691 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=824, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 65513)>, {'action': 'message', 'time': 1634052444.9404483, 'user': {'account_name': 'guest'}, 'message': 'dlfjg'}, []), {}. Вызвана из функции main
+2021-10-12 22:25:11,473 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:25:11,485 - INFO       - Listen :7777
+2021-10-12 22:25:15,868 - INFO       - Host ('127.0.0.1', 64474) has connected
+2021-10-12 22:25:18,495 - INFO       - Message from ('127.0.0.1', 64474) was received
+2021-10-12 22:30:13,733 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:30:13,744 - INFO       - Listen :7777
+2021-10-12 22:30:14,156 - INFO       - Host ('127.0.0.1', 58313) has connected
+2021-10-12 22:31:29,875 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:31:29,888 - INFO       - Listen :7777
+2021-10-12 22:31:30,324 - INFO       - Host ('127.0.0.1', 53731) has connected
+2021-10-12 22:33:40,713 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:33:40,725 - INFO       - Listen :7777
+2021-10-12 22:33:41,123 - INFO       - Host ('127.0.0.1', 54615) has connected
+2021-10-12 22:35:54,976 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:35:54,994 - INFO       - Listen :7777
+2021-10-12 22:35:55,006 - INFO       - Host ('127.0.0.1', 55637) has connected
+2021-10-12 22:37:31,702 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:37:31,724 - INFO       - Listen :7777
+2021-10-12 22:37:31,746 - INFO       - Host ('127.0.0.1', 56333) has connected
+2021-10-12 22:48:56,438 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:48:56,451 - INFO       - Listen :7777
+2021-10-12 22:49:01,096 - INFO       - Host ('127.0.0.1', 53891) has connected
+2021-10-12 22:49:06,063 - INFO       - Message from ('127.0.0.1', 53891) was received
+2021-10-12 22:49:18,600 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:49:18,606 - INFO       - Listen :7777
+2021-10-12 22:49:27,753 - INFO       - Host ('127.0.0.1', 54093) has connected
+2021-10-12 22:49:31,528 - INFO       - Message from ('127.0.0.1', 54093) was received
+2021-10-12 22:57:42,242 - INFO       - Host ('127.0.0.1', 58731) has connected
+2021-10-12 22:59:15,436 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:59:15,446 - INFO       - Listen :7777
+2021-10-12 22:59:32,515 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-12 22:59:47,112 - INFO       - Listen :7777
+2021-10-12 23:00:27,366 - INFO       - Host ('127.0.0.1', 56302) has connected
