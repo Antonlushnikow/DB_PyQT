@@ -32,22 +32,23 @@ class SocketDescriptor(socket):
 
 
 class ServerVerifier(type):
-    def __init__(self, clsname, bases, clsdict):
+    def __init__(cls, clsname, bases, clsdict):
         for value in clsdict.values():
             if hasattr(value, '__call__'):
                 if '(connect)' in dis.Bytecode(value).dis():
                     raise TypeError("Класс Server не должен содержать метод connect")
             if isinstance(value, socket):
                 raise TypeError("Сокет не должен создаваться на уровне класса")
+        if '(SOCK_STREAM)' not in dis.Bytecode(clsdict['__init__']).dis():
+            raise ConnectionError("Сокет должен использовать TCP")
 
-        type.__init__(self, clsname, bases, clsdict)
+        type.__init__(cls, clsname, bases, clsdict)
 
 
 class Server(metaclass=ServerVerifier):
     def __init__(self):
         self.server_socket = SocketDescriptor(AF_INET, SOCK_STREAM)
 
-    s1 = socket()
     @log
     def process_client_message(self, sock, msg, msg_list, client_list):
         """
@@ -123,7 +124,6 @@ class Server(metaclass=ServerVerifier):
 
     def run(self):
         listen_name = self.parse_arguments()
-        s1 = socket()
         clients = {}  # словарь {логин: сокет, }
         messages = []  # список кортежей [(отправитель, сообщение, получатель), ]
 
