@@ -18,6 +18,7 @@ LOG = logging.getLogger('app.client')
 
 
 class ClientVerifier(type):
+    """Метакласс для проверки клиента"""
     def __init__(cls, clsname, bases, clsdict):
         for value in clsdict.values():
             if hasattr(value, '__call__'):

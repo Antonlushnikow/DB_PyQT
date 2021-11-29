@@ -18,20 +18,33 @@ import dis
 LOG = logging.getLogger('app.server')
 
 
-class SocketDescriptor(socket):
+class SocketDescriptor:
+    """Дескриптор для атрибута порт"""
+    def __init__(self):
+        self._value = DEFAULT_PORT
+
+    def __get__(self, instance, instance_type):
+        return self._value
+
+    def __set__(self, instance, value):
+        if not 0 < value < 65536:
+            LOG.warning(f'Не удалось подключиться к порту {value}')
+            print(f'Указан неверный порт, используется порт по умолчанию: {DEFAULT_PORT}')
+            raise ValueError('Порт должен быть целым неотрицательным числом')
+
+        self._value = value
+
+
+class ServerSocket(socket):
+    """Класс серверного сокета"""
     def __init__(self, AdressFamily=AF_INET, SocketKind=SOCK_STREAM):
-        self.port = DEFAULT_PORT
         super().__init__(AdressFamily, SocketKind)
 
-    def __set__(self, port):
-        if not isinstance(port, int) and port < 0:
-            raise ValueError('Порт должен быть целым неотрицательным числом')
-            LOG.warning(f'Не удалось подключиться к порту {listen_port}')
-            print(f'Указан неверный порт, используется порт по умолчанию: {DEFAULT_PORT}')
-        self.port = port
+    port = SocketDescriptor()
 
 
 class ServerVerifier(type):
+    """Метакласс для проверки сервера"""
     def __init__(cls, clsname, bases, clsdict):
         for value in clsdict.values():
             if hasattr(value, '__call__'):
@@ -47,7 +60,7 @@ class ServerVerifier(type):
 
 class Server(metaclass=ServerVerifier):
     def __init__(self):
-        self.server_socket = SocketDescriptor(AF_INET, SOCK_STREAM)
+        self.server_socket = ServerSocket(AF_INET, SOCK_STREAM)
 
     @log
     def process_client_message(self, sock, msg, msg_list, client_list):
