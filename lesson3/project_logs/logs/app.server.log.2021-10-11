@@ -1,0 +1,12 @@
+2021-10-11 16:37:13,172 - INFO       - Listen :7777
+2021-10-11 16:37:15,510 - INFO       - Host ('127.0.0.1', 56103) has connected
+2021-10-11 16:37:15,511 - INFO       - Message from ('127.0.0.1', 56103) was received
+2021-10-11 16:37:15,530 - DEBUG      - Вызов функции check_message с параметрами ({'action': 'presence', 'time': 1633952235.5107439, 'type': 'status', 'user': {'account_name': 'guest'}},), {}. Вызвана из функции main
+2021-10-11 16:37:15,531 - DEBUG      - guest's message is correct
+2021-10-11 16:37:15,531 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 56103)
+2021-10-11 21:42:10,032 - INFO       - Listen :7777
+2021-10-11 21:42:13,772 - INFO       - Host ('127.0.0.1', 52741) has connected
+2021-10-11 21:42:13,772 - INFO       - Message from ('127.0.0.1', 52741) was received
+2021-10-11 21:42:13,793 - DEBUG      - Вызов функции check_message с параметрами ({'action': 'presence', 'time': 1633970533.7723522, 'type': 'status', 'user': {'account_name': 'guest'}},), {}. Вызвана из функции main
+2021-10-11 21:42:13,794 - DEBUG      - guest's message is correct
+2021-10-11 21:42:13,794 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 52741)

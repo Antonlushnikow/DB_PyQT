@@ -1,0 +1,96 @@
+2021-11-28 15:45:23,320 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000025C1A23C610>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 15:45:23,332 - INFO       - Listen :7777
+2021-11-28 17:03:24,544 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x00000259F392C490>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 17:03:24,560 - INFO       - Listen :7777
+2021-11-28 18:05:54,299 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x00000211B497EE80>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 18:05:54,311 - INFO       - Listen :7777
+2021-11-28 18:06:07,605 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002D8E552EE80>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 18:06:07,616 - INFO       - Listen :7777
+2021-11-28 18:06:27,159 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002433A7FEE80>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 18:06:27,169 - INFO       - Listen :7777
+2021-11-28 18:09:08,689 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002251D18EE80>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 18:09:08,700 - INFO       - Listen :7777
+2021-11-28 18:24:25,869 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000023F39E4C3D0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 18:24:25,881 - INFO       - Listen :7777
+2021-11-28 19:39:31,712 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002423E43A910>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:39:50,744 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001D9789BA970>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:39:50,756 - INFO       - Listen :7777
+2021-11-28 19:51:50,088 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002D395C3B970>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:51:50,098 - INFO       - Listen :7777
+2021-11-28 19:53:51,168 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002D7F5DDA880>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:53:51,179 - INFO       - Listen :7777
+2021-11-28 19:56:12,268 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001F55A4EA8E0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:57:18,645 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x00000242E65DAA30>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:57:28,048 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001ECFE84AA30>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:57:28,058 - INFO       - Listen :7777
+2021-11-28 19:57:35,083 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001FCB4C3AA30>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:57:35,093 - INFO       - Listen :7777
+2021-11-28 19:58:24,960 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000011DA59DCF10>,), {}. Вызвана из файла C:/Users/anton/PycharmProjects/DB_PyQT/DB_PyQT/lesson2/server.py, модуля __main__, функции run
+2021-11-28 19:58:57,736 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002502C89AA30>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 19:58:57,747 - INFO       - Listen :7777
+2021-11-28 20:01:10,754 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000021FF592B1C0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:01:10,765 - INFO       - Listen :7777
+2021-11-28 20:07:11,791 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x00000232BD0FB1C0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:07:11,802 - INFO       - Listen :7777
+2021-11-28 20:08:23,980 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000024B26A8A0D0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:08:23,996 - INFO       - Listen :7777
+2021-11-28 20:09:39,773 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001E81C6DB1C0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:09:39,783 - INFO       - Listen :7777
+2021-11-28 20:26:28,221 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x00000227A059AA30>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:26:28,231 - INFO       - Listen :7777
+2021-11-28 20:27:24,135 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001EF4E826DC0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:27:24,147 - INFO       - Listen :7777
+2021-11-28 20:36:43,543 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001E3CB60C1F0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:36:43,554 - INFO       - Listen :7777
+2021-11-28 20:37:12,119 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001F034FEC1F0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:37:12,130 - INFO       - Listen :7777
+2021-11-28 20:37:20,493 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000017C2022C160>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:37:20,503 - INFO       - Listen :7777
+2021-11-28 20:37:30,369 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002164654C190>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:37:30,379 - INFO       - Listen :7777
+2021-11-28 20:37:46,292 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x00000279898CC190>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:37:46,302 - INFO       - Listen :7777
+2021-11-28 20:37:55,184 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001576810C190>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:37:55,199 - INFO       - Listen :7777
+2021-11-28 20:39:12,881 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001A2F605C1F0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:39:12,892 - INFO       - Listen :7777
+2021-11-28 20:39:34,408 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001EBD264C160>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:39:34,420 - INFO       - Listen :7777
+2021-11-28 20:47:19,651 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002D182F6C190>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:47:19,662 - INFO       - Listen :7777
+2021-11-28 20:47:43,225 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000026FECF0C160>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:47:43,235 - INFO       - Listen :7777
+2021-11-28 20:48:18,985 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002420B13C160>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:48:18,994 - INFO       - Listen :7777
+2021-11-28 20:48:40,545 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001F26987C160>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:48:40,555 - INFO       - Listen :7777
+2021-11-28 20:48:59,728 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000020FA3EBC190>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:48:59,740 - INFO       - Listen :7777
+2021-11-28 20:54:40,094 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002AF711CC070>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:54:40,107 - INFO       - Listen :7777
+2021-11-28 20:55:37,149 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002A8ABADC040>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:55:37,161 - INFO       - Listen :7777
+2021-11-28 20:55:47,568 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x00000238C649C130>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:55:47,579 - INFO       - Listen :7777
+2021-11-28 20:56:46,176 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001D8E37A6FA0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 20:56:46,186 - INFO       - Listen :7777
+2021-11-28 21:04:11,996 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002A1B861C070>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:04:12,008 - INFO       - Listen :7777
+2021-11-28 21:04:53,236 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000002925A3DC100>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:04:53,246 - INFO       - Listen :7777
+2021-11-28 21:09:13,629 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001C82B5AC0A0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:09:13,640 - INFO       - Listen :7777
+2021-11-28 21:11:04,285 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x00000141448BC130>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:11:04,297 - INFO       - Listen :7777
+2021-11-28 21:11:40,011 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000017DAA02C040>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:11:40,021 - INFO       - Listen :7777
+2021-11-28 21:11:54,449 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000021A3D75C040>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:11:54,459 - INFO       - Listen :7777
+2021-11-28 21:12:06,929 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001B51109C040>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:12:06,944 - INFO       - Listen :7777
+2021-11-28 21:16:58,723 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x000001F5C0E2C0D0>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:16:58,735 - INFO       - Listen :7777
+2021-11-28 21:45:31,414 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000025E853FAA90>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:45:31,426 - INFO       - Listen :7777
+2021-11-28 21:46:15,053 - DEBUG      - Вызов функции parse_arguments с параметрами (<__main__.Server object at 0x0000020AAE9ABA90>,), {}. Вызвана из файла C:\Users\anton\PycharmProjects\DB_PyQT\DB_PyQT\lesson2\server.py, модуля __main__, функции run
+2021-11-28 21:46:15,065 - INFO       - Listen :7777
