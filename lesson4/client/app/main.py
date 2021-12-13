@@ -3,18 +3,54 @@ from socket import socket, AF_INET, SOCK_STREAM
 from time import time, sleep
 import sys
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
 from common.utils import get_message, send_message
 from common.constants import DEFAULT_PORT, DEFAULT_HOST, ACTION, TIME, RESPONSE, TYPE, ACCOUNT_NAME, MESSAGE, \
-    SENDER, DESTINATION, USER_LIST
+    SENDER, DESTINATION, USER_LIST, CONTACT_LIST, CONTACT_NAME
 import logging
-from project_logs.config import client_log_config
 
-from decorators import log
+from app.decorators import log
 from threading import Thread
 
 import dis
 
+from models import Base
+
 LOG = logging.getLogger('app.client')
+
+
+# Создание БД
+engine = create_engine('sqlite:///db_client.sqlite', echo=True)
+Base.metadata.create_all(engine)
+Session = sessionmaker(engine)
+
+
+def db_adduser(obj):
+    """
+    Добавляет пользователя в БД, если пользователя в ней нет.
+    Регистрирует время входа пользователя в таблице user_history.
+    """
+    try:
+        with Session() as session:
+            session.add(obj)
+            session.commit()
+    except:
+        pass
+
+
+def db_addmessage(obj):
+    """
+    Добавляет пользователя в БД, если пользователя в ней нет.
+    Регистрирует время входа пользователя в таблице user_history.
+    """
+    try:
+        with Session() as session:
+            session.add(obj)
+            session.commit()
+    except:
+        pass
 
 
 class ClientVerifier(type):
@@ -42,6 +78,9 @@ class Client(metaclass=ClientVerifier):
     def show_help():
         print('send - отправка сообщения\n'
               'list - список подключенных пользователей\n'
+              'contacts - список контактов\n'
+              'add_contact\n'
+              'del_contact\n'
               'exit - выход\n'
               'help - вывод подсказки')
 
@@ -69,6 +108,9 @@ class Client(metaclass=ClientVerifier):
                 # вывод списка пользователей
                 elif USER_LIST in msg:
                     print(f'Список пользователей: {msg[USER_LIST]}')
+                # вывод списка контактов
+                elif CONTACT_LIST in msg:
+                    print(f'Список контактов: {msg[CONTACT_LIST]}')
                 else:
                     LOG.warning(f'Got incorrect message')
             except (OSError, ConnectionError, ConnectionAbortedError,
@@ -90,6 +132,55 @@ class Client(metaclass=ClientVerifier):
             ACCOUNT_NAME: account_name,
         }
         return presence_msg
+
+
+    @log
+    def create_msg_get_contacts(self, account_name):
+        """
+        Запрашивает список контактов
+        :param account_name:
+        :return get_contacts_msg:
+        """
+        get_contacts_msg = {
+            ACTION: 'get_contacts',
+            TIME: time(),
+            ACCOUNT_NAME: account_name
+        }
+        return get_contacts_msg
+
+
+    @log
+    def create_msg_add_contact(self, account_name):
+        """
+        Создает сообщение для добавления контакта
+        :param account_name:
+        :return add_contact_msg:
+        """
+        contact_name = input('Введите имя контакта')
+        add_contact_msg = {
+            ACTION: 'add_contact',
+            TIME: time(),
+            ACCOUNT_NAME: account_name,
+            CONTACT_NAME: contact_name
+        }
+        return add_contact_msg
+
+
+    @log
+    def create_msg_del_contact(self, account_name):
+        """
+        Создает сообщение для удаления контакта
+        :param account_name:
+        :return add_contact_msg:
+        """
+        contact_name = input('Введите имя контакта')
+        del_contact_msg = {
+            ACTION: 'del_contact',
+            TIME: time(),
+            ACCOUNT_NAME: account_name,
+            CONTACT_NAME: contact_name
+        }
+        return del_contact_msg
 
     @log
     def create_msg_list(self, account_name='guest'):
@@ -197,6 +288,33 @@ class Client(metaclass=ClientVerifier):
             elif choice == 'list':
                 try:
                     send_message(sock, self.create_msg_list(name))
+                except:
+                    print(f'Соединение с сервером было разорвано')
+                    LOG.critical(f'Соединение с сервером было разорвано')
+                    sys.exit(1)
+
+            # вывод списка пользователей
+            elif choice == 'add_contact':
+                try:
+                    send_message(sock, self.create_msg_add_contact(name))
+                except:
+                    print(f'Соединение с сервером было разорвано')
+                    LOG.critical(f'Соединение с сервером было разорвано')
+                    sys.exit(1)
+
+            # вывод списка пользователей
+            elif choice == 'del_contact':
+                try:
+                    send_message(sock, self.create_msg_del_contact(name))
+                except:
+                    print(f'Соединение с сервером было разорвано')
+                    LOG.critical(f'Соединение с сервером было разорвано')
+                    sys.exit(1)
+
+            # вывод списка контактов
+            elif choice == 'contacts':
+                try:
+                    send_message(sock, self.create_msg_get_contacts(name))
                 except:
                     print(f'Соединение с сервером было разорвано')
                     LOG.critical(f'Соединение с сервером было разорвано')

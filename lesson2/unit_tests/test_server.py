@@ -1,5 +1,5 @@
 import unittest
-from common.constants import RESPONSE, ACTION, TIME, TYPE, USER, ACCOUNT_NAME
+from server.common.constants import RESPONSE, ACTION, TIME, TYPE, USER, ACCOUNT_NAME
 from server import check_message
 
 

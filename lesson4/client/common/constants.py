@@ -12,5 +12,7 @@ ACCOUNT_NAME = 'account_name'
 MESSAGE = 'message'
 SENDER = 'sender'
 DESTINATION = 'destination'
+CONTACT_LIST = 'contact_list'
+CONTACT_NAME = 'contact_name'
 
 RESPONSE = 'response'

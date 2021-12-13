@@ -1,5 +1,5 @@
 import json
-from common.constants import ENCODING, MAX_PACKAGE_LENGTH
+from server.common.constants import ENCODING, MAX_PACKAGE_LENGTH
 from decorators import log
 
 

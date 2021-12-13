@@ -1,7 +1,7 @@
 import unittest
 
-from client import check_response
-from common.constants import RESPONSE
+from client.app.main import check_response
+from server.common.constants import RESPONSE
 
 
 class TestClient(unittest.TestCase):

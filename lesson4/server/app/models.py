@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, UniqueConstraint
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime
 
 Base = declarative_base()
@@ -12,7 +12,8 @@ class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     login = Column(String, unique=True)
-    info = Column(String)
+    info = Column(String, nullable=True)
+    history = relationship('UserHistory', cascade='all, delete-orphan' )
 
     def __init__(self, login, info=''):
         self.login = login
@@ -20,6 +21,9 @@ class User(Base):
 
     def __repr__(self):
         return f'client {self.name} ({self.ipaddr})'
+
+    def to_json(self):
+        return {'id': self.id}
 
 
 class UserHistory(Base):
@@ -30,7 +34,7 @@ class UserHistory(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
     ip_addr = Column(String)
-    logon_time = Column(DateTime)
+    logon_time = Column(DateTime, default=datetime.now())
 
     def __init__(self, user_id, ip_addr='', logon_time=datetime.now()):
         self.user_id = user_id

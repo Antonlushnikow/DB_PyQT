@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, UniqueConstraint
+from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import declarative_base
-from datetime import datetime
 
 Base = declarative_base()
 
@@ -22,22 +21,6 @@ class User(Base):
         return f'client {self.name} ({self.ipaddr})'
 
 
-class UserHistory(Base):
-    """
-    Класс для таблицы времени входа пользователей
-    """
-    __tablename__ = 'user_history'
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
-    ip_addr = Column(String)
-    logon_time = Column(DateTime)
-
-    def __init__(self, user_id, ip_addr='', logon_time=datetime.now()):
-        self.user_id = user_id
-        self.ip_addr = ip_addr
-        self.logon_time = logon_time
-
-
 class UserContact(Base):
     """
     Класс для таблицы контактов пользователей
@@ -52,3 +35,19 @@ class UserContact(Base):
     def __init__(self, user_id, contact_id):
         self.user_id = user_id
         self.contact_id = contact_id
+
+
+class MessageHistory(Base):
+    """
+    Класс для таблицы истории сообщений
+    """
+    __tablename__ = 'message_history'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
+    contact_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
+    message = Column(String)
+
+    def __init__(self, user_id, contact_id, message):
+        self.user_id = user_id
+        self.contact_id = contact_id
+        self.message = message

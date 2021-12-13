@@ -1,3 +1,5 @@
+from db_handlers import create_user
+
 import argparse
 from socket import socket, AF_INET, SOCK_STREAM
 import sys
@@ -7,57 +9,74 @@ import select
 
 from common.utils import get_message, send_message
 from common.constants import DEFAULT_PORT, TIME, ACTION, RESPONSE, MAX_CONNECTIONS, USER_LIST, ACCOUNT_NAME, MESSAGE, \
-    SENDER, DESTINATION
+    SENDER, DESTINATION, CONTACT_NAME
 import logging
-from project_logs.config import server_log_config
-from decorators import log
 
-import collections
+from app.decorators import log
+
 import dis
 
-from db import User, UserContact, UserHistory, Base
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from app.models import User, UserContact
 
 LOG = logging.getLogger('app.server')
 
-# Создание БД
-engine = create_engine('sqlite:///db.sqlite', echo=True)
-Base.metadata.create_all(engine)
-Session = sessionmaker(engine)
 
-
-def db_adduser(obj, addr):
-    """
-    Добавляет пользователя в БД, если пользователя в ней нет.
-    Регистрирует время входа пользователя в таблице user_history.
-    """
-    try:
-        with Session() as session:
-            session.add(obj)
-            session.commit()
-            session.refresh(obj)
-    except:
-        with Session() as session:
-            obj = session.query(User).filter_by(login=obj.login).first()
-    finally:
-        user_hist = UserHistory(obj.id, addr)
-        with Session() as session:
-            session.add(user_hist)
-            session.commit()
-
-
-def db_addcontact(obj):
-    """
-    Добавляет контакт пользователя в БД, если такой связки пользователь-контакт не существует.
-    """
-    try:
-        with Session() as session:
-            session.add(obj)
-            session.commit()
-    except:
-        pass
+# def db_adduser(obj, addr):
+#     """
+#     Добавляет пользователя в БД, если пользователя в ней нет.
+#     Регистрирует время входа пользователя в таблице user_history.
+#     """
+#     try:
+#         with Session() as session:
+#             session.add(obj)
+#             session.commit()
+#             session.refresh(obj)
+#     except:
+#         with Session() as session:
+#             obj = session.query(User).filter_by(login=obj.login).first()
+#     finally:
+#         user_hist = UserHistory(obj.id, addr)
+#         with Session() as session:
+#             session.add(user_hist)
+#             session.commit()
+#
+#
+# def db_addcontact(obj):
+#     """
+#     Добавляет контакт пользователя в БД, если такой связки пользователь-контакт не существует.
+#     """
+#     try:
+#         with Session() as session:
+#             session.add(obj)
+#             session.commit()
+#             return True
+#     except:
+#         return False
+#
+#
+# def db_delcontact(user_id, contact_id):
+#     """
+#     Удаляет контакт пользователя из БД, если такой связки пользователь-контакт не существует.
+#     """
+#     try:
+#         with Session() as session:
+#             session.query(UserContact).filter_by(user_id=user_id, contact_id=contact_id).delete()
+#             session.commit()
+#             return True
+#     except:
+#         return False
+#
+#
+# def db_getcontacts(login):
+#     """
+#     Возвращает список контактов пользователя
+#     """
+#     contacts = []
+#     try:
+#         with Session() as session:
+#             contacts = list(contact.contact_id for contact in session.query(UserContact).filter_by(user_id=login).all())
+#     finally:
+#         return contacts
 
 
 class SocketDescriptor:
@@ -133,7 +152,8 @@ class Server(metaclass=ServerVerifier):
 
                 # регистрация пользователя в БД
                 user = User(msg[ACCOUNT_NAME])
-                db_adduser(user, addr)
+                create_user(msg[ACCOUNT_NAME], '')
+                # db_adduser(user, addr)
 
             return
         # Обработка сообщения от пользователя
@@ -148,6 +168,27 @@ class Server(metaclass=ServerVerifier):
         # Обработка запроса списка пользователей
         elif ACTION in msg and msg[ACTION] == 'list' and TIME in msg and ACCOUNT_NAME in msg:
             send_message(sock, {USER_LIST: list(client_list.keys())})
+            return
+        # Обработка запроса списка контактов
+        elif ACTION in msg and msg[ACTION] == 'get_contacts' and TIME in msg and ACCOUNT_NAME in msg:
+            # send_message(sock, {RESPONSE: "202", CONTACT_LIST: db_getcontacts(msg[ACCOUNT_NAME])})
+            return
+        # Обработка запроса добавления в контакты
+        elif ACTION in msg and msg[ACTION] == 'add_contact' and TIME in msg and ACCOUNT_NAME in msg and CONTACT_NAME in msg:
+            # запись контакта в БД
+            user_cont = UserContact(msg[ACCOUNT_NAME], msg[CONTACT_NAME])
+            # if db_addcontact(user_cont):
+            #     send_message(sock, {RESPONSE: "206", MESSAGE: "Успешно"})
+            # else:
+            #     send_message(sock, {RESPONSE: "406", MESSAGE: "Ошибка"})
+            return
+        # Обработка запроса добавления в контакты
+        elif ACTION in msg and msg[ACTION] == 'del_contact' and TIME in msg and ACCOUNT_NAME in msg and CONTACT_NAME in msg:
+            # удаление контакта из БД
+            # if db_delcontact(msg[ACCOUNT_NAME], msg[CONTACT_NAME]):
+            #     send_message(sock, {RESPONSE: "206", MESSAGE: "Успешно"})
+            # else:
+            #     send_message(sock, {RESPONSE: "406", MESSAGE: "Ошибка"})
             return
         # Обработка сообщения о выходе пользователя
         elif ACTION in msg and msg[ACTION] == 'exit' and TIME in msg and ACCOUNT_NAME in msg:
@@ -240,10 +281,6 @@ class Server(metaclass=ServerVerifier):
                     DESTINATION: message[2]
                 }
                 LOG.info(f'Отправка сообщения пользователю {msg[DESTINATION]}')
-
-                # запись контакта в БД
-                user_cont = UserContact(msg[SENDER], msg[DESTINATION])
-                db_addcontact(user_cont)
 
                 send_message(clients[msg[DESTINATION]], msg)
             messages.clear()

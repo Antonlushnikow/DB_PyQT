@@ -1,0 +1,101 @@
+2021-10-10 18:07:40,574 - INFO       - Listen :7777
+2021-10-10 18:07:44,433 - INFO       - Host ('127.0.0.1', 54940) has connected
+2021-10-10 18:07:44,434 - INFO       - Message from ('127.0.0.1', 54940) was received
+2021-10-10 18:07:44,434 - DEBUG      - guest's message is correct
+2021-10-10 18:07:44,435 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 54940)
+2021-10-10 18:13:05,734 - INFO       - Host ('127.0.0.1', 52264) has connected
+2021-10-10 18:13:05,734 - INFO       - Message from ('127.0.0.1', 52264) was received
+2021-10-10 18:13:05,735 - DEBUG      - guest's message is correct
+2021-10-10 18:13:05,735 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 52264)
+2021-10-10 18:47:30,162 - INFO       - Host ('127.0.0.1', 52770) has connected
+2021-10-10 18:47:30,163 - INFO       - Message from ('127.0.0.1', 52770) was received
+2021-10-10 18:47:30,163 - DEBUG      - guest's message is correct
+2021-10-10 18:47:30,163 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 52770)
+2021-10-10 18:47:54,237 - INFO       - Host ('127.0.0.1', 52912) has connected
+2021-10-10 18:47:54,237 - INFO       - Message from ('127.0.0.1', 52912) was received
+2021-10-10 18:47:54,237 - DEBUG      - guest's message is correct
+2021-10-10 18:47:54,237 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 52912)
+2021-10-10 18:48:29,291 - INFO       - Host ('127.0.0.1', 53083) has connected
+2021-10-10 18:48:29,291 - INFO       - Message from ('127.0.0.1', 53083) was received
+2021-10-10 18:48:29,291 - DEBUG      - guest's message is correct
+2021-10-10 18:48:29,291 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 53083)
+2021-10-10 19:08:50,268 - INFO       - Host ('127.0.0.1', 61506) has connected
+2021-10-10 19:08:50,268 - INFO       - Message from ('127.0.0.1', 61506) was received
+2021-10-10 19:08:50,268 - DEBUG      - guest's message is correct
+2021-10-10 19:08:50,268 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 61506)
+2021-10-10 19:09:39,712 - INFO       - Host ('127.0.0.1', 61120) has connected
+2021-10-10 19:09:39,713 - INFO       - Message from ('127.0.0.1', 61120) was received
+2021-10-10 19:09:39,713 - DEBUG      - guest's message is correct
+2021-10-10 19:09:39,713 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 61120)
+2021-10-10 19:10:31,637 - INFO       - Host ('127.0.0.1', 61138) has connected
+2021-10-10 19:10:31,638 - INFO       - Message from ('127.0.0.1', 61138) was received
+2021-10-10 19:10:31,638 - DEBUG      - guest's message is correct
+2021-10-10 19:10:31,638 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 61138)
+2021-10-10 19:11:04,372 - INFO       - Host ('127.0.0.1', 49366) has connected
+2021-10-10 19:11:04,373 - INFO       - Message from ('127.0.0.1', 49366) was received
+2021-10-10 19:11:04,373 - DEBUG      - guest's message is correct
+2021-10-10 19:11:04,373 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 49366)
+2021-10-10 19:11:20,100 - INFO       - Host ('127.0.0.1', 64012) has connected
+2021-10-10 19:11:20,101 - INFO       - Message from ('127.0.0.1', 64012) was received
+2021-10-10 19:11:20,101 - DEBUG      - guest's message is correct
+2021-10-10 19:11:20,101 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 64012)
+2021-10-10 19:12:18,338 - INFO       - Host ('127.0.0.1', 62922) has connected
+2021-10-10 19:12:18,338 - INFO       - Message from ('127.0.0.1', 62922) was received
+2021-10-10 19:12:18,339 - DEBUG      - guest's message is correct
+2021-10-10 19:12:18,339 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 62922)
+2021-10-10 19:15:51,537 - INFO       - Host ('127.0.0.1', 60451) has connected
+2021-10-10 19:15:51,538 - INFO       - Message from ('127.0.0.1', 60451) was received
+2021-10-10 19:15:51,538 - DEBUG      - guest's message is correct
+2021-10-10 19:15:51,538 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 60451)
+2021-10-10 19:16:17,440 - INFO       - Host ('127.0.0.1', 60577) has connected
+2021-10-10 19:16:17,441 - INFO       - Message from ('127.0.0.1', 60577) was received
+2021-10-10 19:16:17,441 - DEBUG      - guest's message is correct
+2021-10-10 19:16:17,441 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 60577)
+2021-10-10 19:17:36,475 - INFO       - Host ('127.0.0.1', 55496) has connected
+2021-10-10 19:17:36,476 - INFO       - Message from ('127.0.0.1', 55496) was received
+2021-10-10 19:17:36,476 - DEBUG      - guest's message is correct
+2021-10-10 19:17:36,476 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 55496)
+2021-10-10 19:18:52,783 - INFO       - Host ('127.0.0.1', 55915) has connected
+2021-10-10 19:18:52,783 - INFO       - Message from ('127.0.0.1', 55915) was received
+2021-10-10 19:18:52,783 - DEBUG      - guest's message is correct
+2021-10-10 19:18:52,783 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 55915)
+2021-10-10 19:19:07,401 - INFO       - Host ('127.0.0.1', 55990) has connected
+2021-10-10 19:19:07,401 - INFO       - Message from ('127.0.0.1', 55990) was received
+2021-10-10 19:19:07,401 - DEBUG      - guest's message is correct
+2021-10-10 19:19:07,401 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 55990)
+2021-10-10 19:20:03,117 - INFO       - Listen :7777
+2021-10-10 19:20:09,886 - INFO       - Host ('127.0.0.1', 51168) has connected
+2021-10-10 19:20:09,887 - INFO       - Message from ('127.0.0.1', 51168) was received
+2021-10-10 19:20:09,887 - DEBUG      - guest's message is correct
+2021-10-10 19:20:09,887 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 51168)
+2021-10-10 19:22:38,894 - INFO       - Listen :7777
+2021-10-10 19:22:41,513 - INFO       - Host ('127.0.0.1', 49955) has connected
+2021-10-10 19:22:41,513 - INFO       - Message from ('127.0.0.1', 49955) was received
+2021-10-10 19:22:41,514 - DEBUG      - Вызов функции check_message с параметрами ({'action': 'presence', 'time': 1633875761.5139983, 'type': 'status', 'user': {'account_name': 'guest'}},), {}. Вызвана из функции main
+2021-10-10 19:22:41,514 - DEBUG      - guest's message is correct
+2021-10-10 19:22:41,515 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 49955)
+2021-10-10 19:25:37,323 - INFO       - Host ('127.0.0.1', 62153) has connected
+2021-10-10 19:25:37,323 - INFO       - Message from ('127.0.0.1', 62153) was received
+2021-10-10 19:25:37,324 - DEBUG      - Вызов функции check_message с параметрами ({'action': 'presence', 'time': 1633875937.323318, 'type': 'status', 'user': {'account_name': 'guest'}},), {}. Вызвана из функции main
+2021-10-10 19:25:37,325 - DEBUG      - guest's message is correct
+2021-10-10 19:25:37,325 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 62153)
+2021-10-10 19:27:25,948 - INFO       - Host ('127.0.0.1', 62726) has connected
+2021-10-10 19:27:25,949 - INFO       - Message from ('127.0.0.1', 62726) was received
+2021-10-10 19:27:25,950 - DEBUG      - Вызов функции check_message с параметрами ({'action': 'presence', 'time': 1633876045.9480886, 'type': 'status', 'user': {'account_name': 'guest'}},), {}. Вызвана из функции main
+2021-10-10 19:27:25,950 - DEBUG      - guest's message is correct
+2021-10-10 19:27:25,950 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 62726)
+2021-10-10 19:27:38,296 - INFO       - Host ('127.0.0.1', 62790) has connected
+2021-10-10 19:27:38,296 - INFO       - Message from ('127.0.0.1', 62790) was received
+2021-10-10 19:27:38,297 - DEBUG      - Вызов функции check_message с параметрами ({'action': 'presence', 'time': 1633876058.2966514, 'type': 'status', 'user': {'account_name': 'guest'}},), {}. Вызвана из функции main
+2021-10-10 19:27:38,298 - DEBUG      - guest's message is correct
+2021-10-10 19:27:38,298 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 62790)
+2021-10-10 19:28:31,189 - INFO       - Host ('127.0.0.1', 52979) has connected
+2021-10-10 19:28:31,189 - INFO       - Message from ('127.0.0.1', 52979) was received
+2021-10-10 19:28:31,190 - DEBUG      - Вызов функции check_message с параметрами ({'action': 'presence', 'time': 1633876111.1890817, 'type': 'status', 'user': {'account_name': 'guest'}},), {}. Вызвана из функции main
+2021-10-10 19:28:31,190 - DEBUG      - guest's message is correct
+2021-10-10 19:28:31,191 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 52979)
+2021-10-10 19:36:08,101 - INFO       - Host ('127.0.0.1', 53908) has connected
+2021-10-10 19:36:08,101 - INFO       - Message from ('127.0.0.1', 53908) was received
+2021-10-10 19:36:08,102 - DEBUG      - Вызов функции check_message с параметрами ({'action': 'presence', 'time': 1633876568.101967, 'type': 'status', 'user': {'account_name': 'guest'}},), {}. Вызвана из функции main
+2021-10-10 19:36:08,103 - DEBUG      - guest's message is correct
+2021-10-10 19:36:08,103 - INFO       - Response {'response': '200'} was sent to ('127.0.0.1', 53908)
