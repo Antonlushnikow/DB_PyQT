@@ -9,10 +9,12 @@ from sqlalchemy.orm import sessionmaker
 
 
 base_dir = str(Path(__file__).parent.parent.resolve())
+print(base_dir)
 if base_dir not in sys.path:
     sys.path.append(base_dir)
 
 
+from db_handlers import add_message
 from common.utils import get_message, send_message
 from common.constants import DEFAULT_PORT, DEFAULT_HOST, ACTION, TIME, RESPONSE, TYPE, ACCOUNT_NAME, MESSAGE, \
     SENDER, DESTINATION, USER_LIST, CONTACT_LIST, CONTACT_NAME
@@ -103,6 +105,7 @@ class Client(metaclass=ClientVerifier):
         while True:
             try:
                 msg = get_message(sock)
+                print(msg)
                 if ACTION in msg and msg[ACTION] == 'message' and SENDER in msg and MESSAGE in msg \
                    and msg[DESTINATION] == name:
                     LOG.debug(f'Got message from {msg[SENDER]}')
@@ -112,12 +115,16 @@ class Client(metaclass=ClientVerifier):
                     if msg[RESPONSE] == '445':
                         LOG.info('Server has responded with status 445 - Destination user does not exist')
                         print('Ошибка: Получатель не найден')
-                # вывод списка пользователей
-                elif USER_LIST in msg:
-                    print(f'Список пользователей: {msg[USER_LIST]}')
-                # вывод списка контактов
-                elif CONTACT_LIST in msg:
-                    print(f'Список контактов: {msg[CONTACT_LIST]}')
+                    # если пришел код 210 - пользователь уже существует
+                    elif msg[RESPONSE] == '210':
+                        LOG.info('Server has responded with status 210 - user already exists')
+                        print('Инфо: Пользователь существует')
+                    # вывод списка пользователей
+                    elif msg[RESPONSE] == '202' and USER_LIST in msg:
+                        print(f'Список пользователей: {msg[USER_LIST]}')
+                    # вывод списка контактов
+                    elif msg[RESPONSE] == '202' and CONTACT_LIST in msg:
+                        print(f'Список контактов: {msg[CONTACT_LIST]}')
                 else:
                     LOG.warning(f'Got incorrect message')
             except (OSError, ConnectionError, ConnectionAbortedError,
@@ -163,7 +170,7 @@ class Client(metaclass=ClientVerifier):
         :param account_name:
         :return add_contact_msg:
         """
-        contact_name = input('Введите имя контакта')
+        contact_name = input('Введите имя контакта:\n')
         add_contact_msg = {
             ACTION: 'add_contact',
             TIME: time(),
@@ -180,7 +187,7 @@ class Client(metaclass=ClientVerifier):
         :param account_name:
         :return add_contact_msg:
         """
-        contact_name = input('Введите имя контакта')
+        contact_name = input('Введите имя контакта:\n')
         del_contact_msg = {
             ACTION: 'del_contact',
             TIME: time(),
@@ -239,6 +246,7 @@ class Client(metaclass=ClientVerifier):
                 MESSAGE: msg_body,
                 DESTINATION: dst_name
             }
+            add_message(account_name, dst_name, msg_body)
             return msg
 
     @log

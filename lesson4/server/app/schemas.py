@@ -22,3 +22,11 @@ class UserHistory(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UserContact(BaseModel):
+    user_id: int
+    contact_id: int
+
+    class Config:
+        orm_mode = True

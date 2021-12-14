@@ -13,7 +13,8 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     login = Column(String, unique=True)
     info = Column(String, nullable=True)
-    history = relationship('UserHistory', cascade='all, delete-orphan' )
+    history = relationship('UserHistory', cascade='all, delete-orphan')
+    contacts = relationship('UserContact', foreign_keys='UserContact.user_id')
 
     def __init__(self, login, info=''):
         self.login = login

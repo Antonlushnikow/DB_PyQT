@@ -1,12 +1,9 @@
 import inspect
 import logging
 import sys
-from project_logs.config import client_log_config
+from project_logs.config import server_log_config
 
-if 'client' in sys.argv[0]:
-    LOG = logging.getLogger('app.client')
-else:
-    LOG = logging.getLogger('app.server')
+LOG = logging.getLogger('app.server')
 
 
 def log(func):

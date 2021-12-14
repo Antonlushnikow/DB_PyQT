@@ -30,3 +30,22 @@ def add_history(db: Session, model, obj_in):
     db.add(db_obj)
     db.commit()
     return db_obj
+
+
+def delete_by_id(db: Session, model, id):
+    db.query(model).filter(model.id == id).delete()
+    db.commit()
+    return
+
+
+def delete_by_filter(db: Session, model, **kwargs):
+    objects = db.query(model).filter_by(**kwargs)
+    objects.delete()
+    db.commit()
+    return
+
+
+def get_by_filter(db: Session, model, **kwargs):
+    return db.query(model).filter_by(**kwargs).all()
+
+

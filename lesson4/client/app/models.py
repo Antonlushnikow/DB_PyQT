@@ -11,7 +11,7 @@ class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     login = Column(String, unique=True)
-    info = Column(String)
+    info = Column(String, nullable=True)
 
     def __init__(self, login, info=''):
         self.login = login
@@ -27,14 +27,10 @@ class UserContact(Base):
     """
     __tablename__ = 'user_contact'
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
-    contact_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
-    __table_args__ = (UniqueConstraint('user_id', 'contact_id', name='uix_1'),
+    user = Column(String)
+    contact = Column(String)
+    __table_args__ = (UniqueConstraint('user', 'contact', name='uix_1'),
                       )
-
-    def __init__(self, user_id, contact_id):
-        self.user_id = user_id
-        self.contact_id = contact_id
 
 
 class MessageHistory(Base):
@@ -43,11 +39,11 @@ class MessageHistory(Base):
     """
     __tablename__ = 'message_history'
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
-    contact_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
+    user = Column(String)
+    contact = Column(String)
     message = Column(String)
 
-    def __init__(self, user_id, contact_id, message):
-        self.user_id = user_id
-        self.contact_id = contact_id
+    def __init__(self, user, contact, message):
+        self.user = user
+        self.contact = contact
         self.message = message

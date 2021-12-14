@@ -1,92 +1,40 @@
+import threading
 from pathlib import Path
 
-from db_handlers import create_user, add_history, get_obj_by_login
+from PyQt5 import QtCore
+
+from db_handlers import create_user, add_history, get_obj_by_login, add_contact, delete_contact, get_contacts
 
 import argparse
 from socket import socket, AF_INET, SOCK_STREAM
 import sys
 from time import time
 
+from PyQt5.QtWidgets import QMainWindow, QApplication
+import server_form
+
 import select
 
 base_dir = str(Path(__file__).parent.parent.resolve())
+print(base_dir)
 if base_dir not in sys.path:
     sys.path.append(base_dir)
 
 
 from common.utils import get_message, send_message
 from common.constants import DEFAULT_PORT, TIME, ACTION, RESPONSE, MAX_CONNECTIONS, USER_LIST, ACCOUNT_NAME, MESSAGE, \
-    SENDER, DESTINATION, CONTACT_NAME
+    SENDER, DESTINATION, CONTACT_NAME, CONTACT_LIST
 import logging
 
 from app.decorators import log
 
 import dis
 
-from app.models import User, UserContact
-
 
 LOG = logging.getLogger('app.server')
 
 
-
-
-# def db_adduser(obj, addr):
-#     """
-#     Добавляет пользователя в БД, если пользователя в ней нет.
-#     Регистрирует время входа пользователя в таблице user_history.
-#     """
-#     try:
-#         with Session() as session:
-#             session.add(obj)
-#             session.commit()
-#             session.refresh(obj)
-#     except:
-#         with Session() as session:
-#             obj = session.query(User).filter_by(login=obj.login).first()
-#     finally:
-#         user_hist = UserHistory(obj.id, addr)
-#         with Session() as session:
-#             session.add(user_hist)
-#             session.commit()
-#
-#
-# def db_addcontact(obj):
-#     """
-#     Добавляет контакт пользователя в БД, если такой связки пользователь-контакт не существует.
-#     """
-#     try:
-#         with Session() as session:
-#             session.add(obj)
-#             session.commit()
-#             return True
-#     except:
-#         return False
-#
-#
-# def db_delcontact(user_id, contact_id):
-#     """
-#     Удаляет контакт пользователя из БД, если такой связки пользователь-контакт не существует.
-#     """
-#     try:
-#         with Session() as session:
-#             session.query(UserContact).filter_by(user_id=user_id, contact_id=contact_id).delete()
-#             session.commit()
-#             return True
-#     except:
-#         return False
-#
-#
-# def db_getcontacts(login):
-#     """
-#     Возвращает список контактов пользователя
-#     """
-#     contacts = []
-#     try:
-#         with Session() as session:
-#             contacts = list(contact.contact_id for contact in session.query(UserContact).filter_by(user_id=login).all())
-#     finally:
-#         return contacts
+online_users = []
 
 
 class SocketDescriptor:
@@ -130,7 +78,9 @@ class ServerVerifier(type):
 
 
 class Server(metaclass=ServerVerifier):
-    def __init__(self):
+    def __init__(self, addr='', port=DEFAULT_PORT):
+        self.addr = addr
+        self.port = int(port)
         self.server_socket = ServerSocket(AF_INET, SOCK_STREAM)
 
     @log
@@ -161,11 +111,12 @@ class Server(metaclass=ServerVerifier):
                 client_list[msg[ACCOUNT_NAME]] = sock
 
                 # регистрация пользователя в БД
-                # user = User(msg[ACCOUNT_NAME])
-                create_user(msg[ACCOUNT_NAME], '')
+                try:
+                    create_user(msg[ACCOUNT_NAME], '')
+                except:
+                    send_message(sock, {RESPONSE: '210'})
                 user = get_obj_by_login(msg[ACCOUNT_NAME])
                 add_history(user.id)
-                # db_adduser(user, addr)
 
             return
         # Обработка сообщения от пользователя
@@ -177,30 +128,39 @@ class Server(metaclass=ServerVerifier):
                 LOG.critical(f'{msg[DESTINATION]}\' does not exist')
                 send_message(sock, {RESPONSE: '445'})
             return
-        # Обработка запроса списка пользователей
+        # Обработка запроса списка пользователей онлайн
         elif ACTION in msg and msg[ACTION] == 'list' and TIME in msg and ACCOUNT_NAME in msg:
             send_message(sock, {USER_LIST: list(client_list.keys())})
             return
         # Обработка запроса списка контактов
         elif ACTION in msg and msg[ACTION] == 'get_contacts' and TIME in msg and ACCOUNT_NAME in msg:
-            # send_message(sock, {RESPONSE: "202", CONTACT_LIST: db_getcontacts(msg[ACCOUNT_NAME])})
+            user_id = get_obj_by_login(msg[ACCOUNT_NAME]).id
+            contacts = list(contact.login for contact in get_contacts(user_id)) or []
+            send_message(sock, {RESPONSE: '202', CONTACT_LIST: contacts})
             return
         # Обработка запроса добавления в контакты
         elif ACTION in msg and msg[ACTION] == 'add_contact' and TIME in msg and ACCOUNT_NAME in msg and CONTACT_NAME in msg:
             # запись контакта в БД
-            user_cont = UserContact(msg[ACCOUNT_NAME], msg[CONTACT_NAME])
-            # if db_addcontact(user_cont):
-            #     send_message(sock, {RESPONSE: "206", MESSAGE: "Успешно"})
-            # else:
-            #     send_message(sock, {RESPONSE: "406", MESSAGE: "Ошибка"})
+            try:
+                user_id = get_obj_by_login(msg[ACCOUNT_NAME]).id
+                contact_id = get_obj_by_login(msg[CONTACT_NAME]).id
+            except:
+                send_message(sock, {RESPONSE: "406", MESSAGE: "Ошибка"})
+            else:
+                add_contact(user_id, contact_id)
+                send_message(sock, {RESPONSE: "206", MESSAGE: "Успешно"})
+
             return
-        # Обработка запроса добавления в контакты
+        # Обработка запроса удаления из контактов
         elif ACTION in msg and msg[ACTION] == 'del_contact' and TIME in msg and ACCOUNT_NAME in msg and CONTACT_NAME in msg:
-            # удаление контакта из БД
-            # if db_delcontact(msg[ACCOUNT_NAME], msg[CONTACT_NAME]):
-            #     send_message(sock, {RESPONSE: "206", MESSAGE: "Успешно"})
-            # else:
-            #     send_message(sock, {RESPONSE: "406", MESSAGE: "Ошибка"})
+            try:
+                user_id = get_obj_by_login(msg[ACCOUNT_NAME]).id
+                contact_id = get_obj_by_login(msg[CONTACT_NAME]).id
+            except:
+                send_message(sock, {RESPONSE: "406", MESSAGE: "Ошибка"})
+            else:
+                delete_contact(user_id, contact_id)
+                send_message(sock, {RESPONSE: "206", MESSAGE: "Успешно"})
             return
         # Обработка сообщения о выходе пользователя
         elif ACTION in msg and msg[ACTION] == 'exit' and TIME in msg and ACCOUNT_NAME in msg:
@@ -223,8 +183,8 @@ class Server(metaclass=ServerVerifier):
         :return listen_name, listen_port:
         """
         parser = argparse.ArgumentParser()
-        parser.add_argument('-a', '--addr', default='')
-        parser.add_argument('-p', '--port', type=int, default=DEFAULT_PORT)
+        parser.add_argument('-a', '--addr', default=self.addr)
+        parser.add_argument('-p', '--port', type=int, default=self.port)
         namespace = parser.parse_args(sys.argv[1:])
         listen_name = namespace.addr
         self.server_socket.port = namespace.port
@@ -232,6 +192,7 @@ class Server(metaclass=ServerVerifier):
         return listen_name
 
     def run(self):
+        global online_users
         listen_name = self.parse_arguments()
         clients = {}  # словарь {логин: сокет, }
         messages = []  # список кортежей [(отправитель, сообщение, получатель), ]
@@ -260,6 +221,7 @@ class Server(metaclass=ServerVerifier):
 
                 # Получение приветственного сообщения
                 self.process_client_message(client_socket, get_message(client_socket), [], clients, addr[0])
+                online_users = list(clients.keys())
 
             hosts_who_send, hosts_who_listen = [], []
 
@@ -273,6 +235,7 @@ class Server(metaclass=ServerVerifier):
                 for host in hosts_who_send:
                     try:
                         self.process_client_message(host, get_message(host), messages, clients)
+                        online_users = list(clients.keys())
                     except:
                         LOG.info(f'{host} disconnected from the server')
 
@@ -283,6 +246,7 @@ class Server(metaclass=ServerVerifier):
                                 key_host = key
                         if key_host:
                             del clients[key_host]
+                            online_users = list(clients.keys())
 
             for message in messages:
                 msg = {
@@ -298,10 +262,31 @@ class Server(metaclass=ServerVerifier):
             messages.clear()
 
 
-def main():
-    srv = Server()
+def start(addr, port):
+    srv = Server(addr, port)
     srv.run()
 
 
 if __name__ == '__main__':
-    main()
+    app = QApplication(sys.argv)
+    window = QMainWindow()
+    ui = server_form.Ui_Dialog()
+    ui.setupUi(window)
+    ui.label_3.setText(''.join(online_users))
+    ui.pushButton.clicked.connect(lambda: thread(ui.lineEdit.text(), ui.lineEdit_2.text()))
+    window.show()
+
+    def get_online_users():
+        ui.label_3.setText('\n'.join(online_users))
+
+
+    def thread(addr, port):
+        ui.label_4.setText('Connected')
+        ui.pushButton.setDisabled(True)
+        threading.Thread(target=start, args=(addr, port), daemon=True).start()
+
+    timer = QtCore.QTimer()
+    timer.timeout.connect(get_online_users)
+    timer.start(1000)
+
+    sys.exit(app.exec_())
