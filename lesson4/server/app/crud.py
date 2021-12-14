@@ -7,7 +7,8 @@ def get_by_id(db: Session, model, id: int):
 
 
 def get_by_login(db: Session, model, login: str):
-    return db.query(model).filter(model.login == login).first()
+    obj = db.query(model).filter(model.login == login).first()
+    return obj
 
 
 def get_multi(db: Session, model, sort=None, filter_=None):
@@ -16,6 +17,14 @@ def get_multi(db: Session, model, sort=None, filter_=None):
 
 
 def create(db: Session, model, obj_in):
+    obj_in_data = jsonable_encoder(obj_in)
+    db_obj = model(**obj_in_data)
+    db.add(db_obj)
+    db.commit()
+    return db_obj
+
+
+def add_history(db: Session, model, obj_in):
     obj_in_data = jsonable_encoder(obj_in)
     db_obj = model(**obj_in_data)
     db.add(db_obj)

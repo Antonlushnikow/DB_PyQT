@@ -1,10 +1,17 @@
 import argparse
+from pathlib import Path
 from socket import socket, AF_INET, SOCK_STREAM
 from time import time, sleep
 import sys
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+
+base_dir = str(Path(__file__).parent.parent.resolve())
+if base_dir not in sys.path:
+    sys.path.append(base_dir)
+
 
 from common.utils import get_message, send_message
 from common.constants import DEFAULT_PORT, DEFAULT_HOST, ACTION, TIME, RESPONSE, TYPE, ACCOUNT_NAME, MESSAGE, \
@@ -21,36 +28,36 @@ from models import Base
 LOG = logging.getLogger('app.client')
 
 
-# Создание БД
-engine = create_engine('sqlite:///db_client.sqlite', echo=True)
-Base.metadata.create_all(engine)
-Session = sessionmaker(engine)
+# # Создание БД
+# engine = create_engine('sqlite:///db_client.sqlite', echo=True)
+# Base.metadata.create_all(engine)
+# Session = sessionmaker(engine)
 
 
-def db_adduser(obj):
-    """
-    Добавляет пользователя в БД, если пользователя в ней нет.
-    Регистрирует время входа пользователя в таблице user_history.
-    """
-    try:
-        with Session() as session:
-            session.add(obj)
-            session.commit()
-    except:
-        pass
-
-
-def db_addmessage(obj):
-    """
-    Добавляет пользователя в БД, если пользователя в ней нет.
-    Регистрирует время входа пользователя в таблице user_history.
-    """
-    try:
-        with Session() as session:
-            session.add(obj)
-            session.commit()
-    except:
-        pass
+# def db_adduser(obj):
+#     """
+#     Добавляет пользователя в БД, если пользователя в ней нет.
+#     Регистрирует время входа пользователя в таблице user_history.
+#     """
+#     try:
+#         with Session() as session:
+#             session.add(obj)
+#             session.commit()
+#     except:
+#         pass
+#
+#
+# def db_addmessage(obj):
+#     """
+#     Добавляет пользователя в БД, если пользователя в ней нет.
+#     Регистрирует время входа пользователя в таблице user_history.
+#     """
+#     try:
+#         with Session() as session:
+#             session.add(obj)
+#             session.commit()
+#     except:
+#         pass
 
 
 class ClientVerifier(type):

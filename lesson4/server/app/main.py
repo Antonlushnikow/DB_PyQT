@@ -1,4 +1,6 @@
-from db_handlers import create_user
+from pathlib import Path
+
+from db_handlers import create_user, add_history, get_obj_by_login
 
 import argparse
 from socket import socket, AF_INET, SOCK_STREAM
@@ -6,6 +8,11 @@ import sys
 from time import time
 
 import select
+
+base_dir = str(Path(__file__).parent.parent.resolve())
+if base_dir not in sys.path:
+    sys.path.append(base_dir)
+
 
 from common.utils import get_message, send_message
 from common.constants import DEFAULT_PORT, TIME, ACTION, RESPONSE, MAX_CONNECTIONS, USER_LIST, ACCOUNT_NAME, MESSAGE, \
@@ -18,7 +25,10 @@ import dis
 
 from app.models import User, UserContact
 
+
 LOG = logging.getLogger('app.server')
+
+
 
 
 # def db_adduser(obj, addr):
@@ -151,8 +161,10 @@ class Server(metaclass=ServerVerifier):
                 client_list[msg[ACCOUNT_NAME]] = sock
 
                 # регистрация пользователя в БД
-                user = User(msg[ACCOUNT_NAME])
+                # user = User(msg[ACCOUNT_NAME])
                 create_user(msg[ACCOUNT_NAME], '')
+                user = get_obj_by_login(msg[ACCOUNT_NAME])
+                add_history(user.id)
                 # db_adduser(user, addr)
 
             return
