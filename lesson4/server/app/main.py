@@ -82,6 +82,7 @@ class Server(metaclass=ServerVerifier):
         self.addr = addr
         self.port = int(port)
         self.server_socket = ServerSocket(AF_INET, SOCK_STREAM)
+        self.clients = {}  # словарь {логин: сокет, }
 
     @log
     def process_client_message(self, sock, msg, msg_list, client_list, addr=''):
@@ -191,10 +192,14 @@ class Server(metaclass=ServerVerifier):
 
         return listen_name
 
+    @property
+    def online_users(self):
+        return list(self.clients.keys())
+
     def run(self):
-        global online_users
+        # global online_users
         listen_name = self.parse_arguments()
-        clients = {}  # словарь {логин: сокет, }
+
         messages = []  # список кортежей [(отправитель, сообщение, получатель), ]
 
         try:
@@ -220,33 +225,30 @@ class Server(metaclass=ServerVerifier):
                 LOG.info(f'Host {addr} has connected')
 
                 # Получение приветственного сообщения
-                self.process_client_message(client_socket, get_message(client_socket), [], clients, addr[0])
-                online_users = list(clients.keys())
+                self.process_client_message(client_socket, get_message(client_socket), [], self.clients, addr[0])
 
             hosts_who_send, hosts_who_listen = [], []
 
             try:
-                if clients:
-                    hosts_who_send, hosts_who_listen, _ = select.select(clients.values(), clients.values(), [], 0)
+                if self.clients:
+                    hosts_who_send, hosts_who_listen, _ = select.select(self.clients.values(), self.clients.values(), [], 0)
             except OSError:
                 pass
 
             if hosts_who_send:
                 for host in hosts_who_send:
                     try:
-                        self.process_client_message(host, get_message(host), messages, clients)
-                        online_users = list(clients.keys())
+                        self.process_client_message(host, get_message(host), messages, self.clients)
                     except:
                         LOG.info(f'{host} disconnected from the server')
 
                         # удаление отключенного пользователя из словаря
                         key_host = ''
-                        for key, value in clients.items():
+                        for key, value in self.clients.items():
                             if value == host:
                                 key_host = key
                         if key_host:
-                            del clients[key_host]
-                            online_users = list(clients.keys())
+                            del self.clients[key_host]
 
             for message in messages:
                 msg = {
@@ -258,16 +260,12 @@ class Server(metaclass=ServerVerifier):
                 }
                 LOG.info(f'Отправка сообщения пользователю {msg[DESTINATION]}')
 
-                send_message(clients[msg[DESTINATION]], msg)
+                send_message(self.clients[msg[DESTINATION]], msg)
             messages.clear()
 
 
-def start(addr, port):
-    srv = Server(addr, port)
-    srv.run()
-
-
 if __name__ == '__main__':
+    srv = Server()
     app = QApplication(sys.argv)
     window = QMainWindow()
     ui = server_form.Ui_Dialog()
@@ -277,13 +275,18 @@ if __name__ == '__main__':
     window.show()
 
     def get_online_users():
-        ui.label_3.setText('\n'.join(online_users))
+        ui.label_3.setText('\n'.join(srv.online_users))
 
 
     def thread(addr, port):
         ui.label_4.setText('Connected')
         ui.pushButton.setDisabled(True)
         threading.Thread(target=start, args=(addr, port), daemon=True).start()
+
+    def start(addr, port):
+        srv.addr = addr
+        srv.port = port
+        srv.run()
 
     timer = QtCore.QTimer()
     timer.timeout.connect(get_online_users)
