@@ -1,0 +1,435 @@
+2021-10-13 10:19:12,904 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 10:19:23,979 - INFO       - Listen :7777
+2021-10-13 10:22:03,294 - INFO       - Host ('127.0.0.1', 50165) has connected
+2021-10-13 10:58:46,869 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 10:58:46,885 - INFO       - Listen :7777
+2021-10-13 10:58:50,741 - INFO       - Host ('127.0.0.1', 64174) has connected
+2021-10-13 11:07:40,115 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 11:08:03,219 - INFO       - Listen :7777
+2021-10-13 11:08:56,238 - INFO       - Host ('127.0.0.1', 55527) has connected
+2021-10-13 11:09:16,157 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1140, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55527)>, {'action': 'presence', 'time': 1634105310.3707454, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 11:09:16,159 - DEBUG      - guest's message is correct
+2021-10-13 11:12:13,576 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 11:12:18,140 - INFO       - Listen :7777
+2021-10-13 11:12:47,031 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 11:12:48,873 - INFO       - Listen :7777
+2021-10-13 11:13:16,195 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 11:13:16,206 - INFO       - Listen :7777
+2021-10-13 13:26:16,560 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 13:26:16,573 - INFO       - Listen :7777
+2021-10-13 13:26:16,579 - INFO       - Host ('127.0.0.1', 54761) has connected
+2021-10-13 13:26:16,581 - INFO       - Host ('127.0.0.1', 54762) has connected
+2021-10-13 13:26:16,581 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=344, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54761)>, {'action': 'presence', 'time': 1634113576.5792668, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 13:26:16,582 - DEBUG      - guest's message is correct
+2021-10-13 13:26:16,677 - INFO       - Host ('127.0.0.1', 54763) has connected
+2021-10-13 13:26:16,678 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54762)>, {'action': 'presence', 'time': 1634113576.5812664, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 13:26:16,678 - DEBUG      - guest's message is correct
+2021-10-13 13:26:17,085 - INFO       - Host ('127.0.0.1', 54760) has connected
+2021-10-13 13:26:17,087 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=416, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54763)>, {'action': 'presence', 'time': 1634113576.6782646, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 13:26:17,088 - DEBUG      - guest's message is correct
+2021-10-13 13:36:13,440 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 13:36:17,188 - INFO       - Listen :7777
+2021-10-13 13:36:30,754 - INFO       - Host ('127.0.0.1', 52058) has connected
+2021-10-13 13:36:43,517 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1072, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52058)>, {'action': 'presence', 'time': 1634114182.55238, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 13:36:43,518 - DEBUG      - guest's message is correct
+2021-10-13 13:36:57,817 - INFO       - Host ('127.0.0.1', 52059) has connected
+2021-10-13 13:37:01,227 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1380, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52059)>, {'action': 'presence', 'time': 1634114182.5573804, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 13:37:01,228 - DEBUG      - guest's message is correct
+2021-10-13 13:37:03,797 - INFO       - Host ('127.0.0.1', 52061) has connected
+2021-10-13 13:54:58,144 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1240, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52061)>, {'action': 'presence', 'time': 1634114182.5623798, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 13:54:58,145 - DEBUG      - guest's message is correct
+2021-10-13 13:55:11,692 - INFO       - Host ('127.0.0.1', 52060) has connected
+2021-10-13 13:55:39,573 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1472, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52060)>, {'action': 'presence', 'time': 1634114182.5623798, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 13:55:39,574 - DEBUG      - guest's message is correct
+2021-10-13 15:36:43,226 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 15:36:45,113 - INFO       - Listen :7777
+2021-10-13 15:36:58,925 - INFO       - Host ('127.0.0.1', 52120) has connected
+2021-10-13 15:37:34,385 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1052, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52120)>, {'action': 'presence', 'time': 1634121411.7145386, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 15:37:34,386 - DEBUG      - guest's message is correct
+2021-10-13 15:38:04,965 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 15:38:04,969 - INFO       - Listen :7777
+2021-10-13 15:38:10,391 - INFO       - Host ('127.0.0.1', 52490) has connected
+2021-10-13 15:42:42,073 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 15:42:42,077 - INFO       - Listen :7777
+2021-10-13 15:47:03,949 - INFO       - Host ('127.0.0.1', 58944) has connected
+2021-10-13 15:48:33,168 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=920, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58944)>, {'action': 'presence', 'time': 1634122023.9508452, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 15:48:39,827 - DEBUG      - guest's message is correct
+2021-10-13 16:00:48,823 - INFO       - Host ('127.0.0.1', 59819) has connected
+2021-10-13 16:00:58,010 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=904, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59819)>, {'action': 'presence', 'time': 1634122833.6953833, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 16:00:58,977 - DEBUG      - guest's message is correct
+2021-10-13 16:01:40,482 - INFO       - Host ('127.0.0.1', 57457) has connected
+2021-10-13 16:01:42,943 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=880, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57457)>, {'action': 'presence', 'time': 1634122893.9852068, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 16:01:44,439 - DEBUG      - guest's message is correct
+2021-10-13 16:08:57,650 - INFO       - Host ('127.0.0.1', 65070) has connected
+2021-10-13 16:08:58,029 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1240, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 65070)>, {'action': 'presence', 'time': 1634123321.9800997, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 16:08:58,137 - DEBUG      - guest's message is correct
+2021-10-13 16:09:45,426 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 16:09:45,440 - INFO       - Listen :7777
+2021-10-13 16:09:55,301 - INFO       - Host ('127.0.0.1', 65414) has connected
+2021-10-13 16:10:01,080 - INFO       - Host ('127.0.0.1', 65431) has connected
+2021-10-13 16:10:01,081 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=356, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 65414)>, {'action': 'presence', 'time': 1634123395.3023255, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 16:10:01,081 - DEBUG      - guest's message is correct
+2021-10-13 16:11:00,803 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 16:11:00,815 - INFO       - Listen :7777
+2021-10-13 16:11:06,396 - INFO       - Host ('127.0.0.1', 49367) has connected
+2021-10-13 16:11:11,678 - INFO       - Host ('127.0.0.1', 61724) has connected
+2021-10-13 16:11:11,679 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=408, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49367)>, {'action': 'presence', 'time': 1634123466.3975227, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 16:11:11,679 - DEBUG      - guest's message is correct
+2021-10-13 16:11:57,569 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 16:11:57,581 - INFO       - Listen :7777
+2021-10-13 16:12:06,717 - INFO       - Host ('127.0.0.1', 62000) has connected
+2021-10-13 16:12:57,010 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 16:12:57,014 - INFO       - Listen :7777
+2021-10-13 16:13:05,087 - INFO       - Host ('127.0.0.1', 62289) has connected
+2021-10-13 16:33:00,477 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=772, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62289)>, {'action': 'presence', 'time': 1634123585.087964, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 16:33:03,419 - DEBUG      - guest's message is correct
+2021-10-13 16:36:39,928 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 16:36:39,932 - INFO       - Listen :7777
+2021-10-13 16:54:28,647 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 16:54:28,659 - INFO       - Listen :7777
+2021-10-13 16:54:32,815 - INFO       - Host ('127.0.0.1', 55210) has connected
+2021-10-13 16:54:50,738 - INFO       - Host ('127.0.0.1', 55480) has connected
+2021-10-13 16:54:55,529 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 16:54:55,540 - INFO       - Listen :7777
+2021-10-13 16:55:01,405 - INFO       - Host ('127.0.0.1', 55512) has connected
+2021-10-13 16:55:40,566 - INFO       - Host ('127.0.0.1', 55685) has connected
+2021-10-13 16:56:35,290 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 16:56:35,301 - INFO       - Listen :7777
+2021-10-13 16:56:46,313 - INFO       - Host ('127.0.0.1', 55988) has connected
+2021-10-13 17:27:56,105 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:27:56,122 - INFO       - Listen :7777
+2021-10-13 17:27:59,901 - INFO       - Host ('127.0.0.1', 65307) has connected
+2021-10-13 17:28:38,046 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:28:42,442 - INFO       - Listen :7777
+2021-10-13 17:34:39,599 - INFO       - Host ('127.0.0.1', 65510) has connected
+2021-10-13 17:34:44,998 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1068, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 65510)>, {'action': 'presence', 'time': 1634128126.2187467, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 17:34:44,998 - DEBUG      - guest's message is correct
+2021-10-13 17:35:14,502 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:35:14,514 - INFO       - Listen :7777
+2021-10-13 17:35:16,736 - INFO       - Host ('127.0.0.1', 57367) has connected
+2021-10-13 17:35:50,334 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:35:52,441 - INFO       - Listen :7777
+2021-10-13 17:35:59,295 - INFO       - Host ('127.0.0.1', 57524) has connected
+2021-10-13 17:36:02,200 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=1028, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57524)>, {'action': 'presence', 'time': 1634128556.6279268, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 17:36:02,202 - DEBUG      - guest's message is correct
+2021-10-13 17:36:50,796 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:36:50,807 - INFO       - Listen :7777
+2021-10-13 17:37:00,603 - INFO       - Host ('127.0.0.1', 55680) has connected
+2021-10-13 17:37:38,691 - INFO       - Host ('127.0.0.1', 55877) has connected
+2021-10-13 17:37:45,746 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:37:45,756 - INFO       - Listen :7777
+2021-10-13 17:37:50,329 - INFO       - Host ('127.0.0.1', 55926) has connected
+2021-10-13 17:41:00,662 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:41:00,678 - INFO       - Listen :7777
+2021-10-13 17:41:08,941 - INFO       - Host ('127.0.0.1', 61478) has connected
+2021-10-13 17:43:07,877 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:43:07,894 - INFO       - Listen :7777
+2021-10-13 17:43:11,929 - INFO       - Host ('127.0.0.1', 61996) has connected
+2021-10-13 17:44:44,624 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:44:44,635 - INFO       - Listen :7777
+2021-10-13 17:44:49,858 - INFO       - Host ('127.0.0.1', 62371) has connected
+2021-10-13 17:56:57,969 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:56:57,985 - INFO       - Listen :7777
+2021-10-13 17:57:03,321 - INFO       - Host ('127.0.0.1', 56543) has connected
+2021-10-13 17:57:24,272 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:57:24,280 - INFO       - Listen :7777
+2021-10-13 17:57:27,287 - INFO       - Host ('127.0.0.1', 56629) has connected
+2021-10-13 17:58:10,313 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 17:58:10,318 - INFO       - Listen :7777
+2021-10-13 17:58:12,637 - INFO       - Host ('127.0.0.1', 56866) has connected
+2021-10-13 18:01:00,460 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:01:00,464 - INFO       - Listen :7777
+2021-10-13 18:01:02,974 - INFO       - Host ('127.0.0.1', 57774) has connected
+2021-10-13 18:03:26,976 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:03:26,988 - INFO       - Listen :7777
+2021-10-13 18:03:30,294 - INFO       - Host ('127.0.0.1', 57834) has connected
+2021-10-13 18:03:30,295 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57834)>, {'action': 'presence', 'time': 1634130210.2946312, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 18:03:30,295 - DEBUG      - guest's message is correct
+2021-10-13 18:03:50,633 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:03:50,643 - INFO       - Listen :7777
+2021-10-13 18:03:54,468 - INFO       - Host ('127.0.0.1', 57957) has connected
+2021-10-13 18:03:54,469 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=304, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57957)>, {'action': 'presence', 'time': 1634130234.4690864, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 18:03:54,469 - DEBUG      - guest's message is correct
+2021-10-13 18:04:17,742 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:04:17,747 - INFO       - Listen :7777
+2021-10-13 18:43:38,763 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:43:38,781 - INFO       - Listen :7777
+2021-10-13 18:43:40,738 - INFO       - Host ('127.0.0.1', 52509) has connected
+2021-10-13 18:43:40,739 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=404, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52509)>, {'action': 'presence', 'time': 1634132620.738599, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 18:43:40,740 - DEBUG      - guest's message is correct
+2021-10-13 18:44:07,231 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:44:07,243 - INFO       - Listen :7777
+2021-10-13 18:44:13,062 - INFO       - Host ('127.0.0.1', 52677) has connected
+2021-10-13 18:44:13,064 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=140, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52677)>, {'action': 'presence', 'time': 1634132653.0631952, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 18:44:13,064 - DEBUG      - guest's message is correct
+2021-10-13 18:46:57,061 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:46:57,073 - INFO       - Listen :7777
+2021-10-13 18:47:01,397 - INFO       - Host ('127.0.0.1', 53530) has connected
+2021-10-13 18:47:01,398 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=284, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53530)>, {'action': 'presence', 'time': 1634132821.3988237, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 18:47:01,398 - DEBUG      - guest's message is correct
+2021-10-13 18:47:41,409 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:47:41,420 - INFO       - Listen :7777
+2021-10-13 18:47:46,211 - INFO       - Host ('127.0.0.1', 53738) has connected
+2021-10-13 18:47:46,212 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=392, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53738)>, {'action': 'presence', 'time': 1634132866.2111104, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 18:47:46,212 - DEBUG      - guest's message is correct
+2021-10-13 18:52:44,846 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:52:44,858 - INFO       - Listen :7777
+2021-10-13 18:52:50,668 - INFO       - Host ('127.0.0.1', 58251) has connected
+2021-10-13 18:52:50,670 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58251)>, {'action': 'presence', 'time': 1634133170.6690557, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 18:52:50,670 - DEBUG      - guest's message is correct
+2021-10-13 18:53:03,120 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58251)>, {'action': 'message', 'time': 1634133183.1197708, 'user': {'account_name': 'guest'}, 'message': '123'}, []), {}. Вызвана из функции main
+2021-10-13 18:53:03,120 - DEBUG      - Got message [('guest', '123')]
+2021-10-13 18:57:39,408 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 18:57:39,458 - INFO       - Listen :7777
+2021-10-13 18:57:39,503 - INFO       - Host ('127.0.0.1', 49348) has connected
+2021-10-13 18:57:39,507 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=380, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49348)>, {'action': 'presence', 'time': 1634133459.5027683, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 18:57:39,507 - DEBUG      - guest's message is correct
+2021-10-13 18:57:39,556 - INFO       - Host ('127.0.0.1', 49349) has connected
+2021-10-13 19:00:21,715 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:00:21,725 - INFO       - Listen :7777
+2021-10-13 19:00:22,199 - INFO       - Host ('127.0.0.1', 49726) has connected
+2021-10-13 19:00:22,216 - INFO       - Host ('127.0.0.1', 49727) has connected
+2021-10-13 19:00:22,219 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=420, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49726)>, {'action': 'presence', 'time': 1634133622.199469, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:00:22,221 - DEBUG      - guest's message is correct
+2021-10-13 19:00:22,224 - INFO       - Host ('127.0.0.1', 49728) has connected
+2021-10-13 19:00:22,230 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=452, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49727)>, {'action': 'presence', 'time': 1634133622.2154763, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:00:22,230 - DEBUG      - guest's message is correct
+2021-10-13 19:00:22,232 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49728)>, {'action': 'presence', 'time': 1634133622.2154763, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:00:22,232 - DEBUG      - guest's message is correct
+2021-10-13 19:00:22,238 - INFO       - Host ('127.0.0.1', 49729) has connected
+2021-10-13 19:00:22,242 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=424, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49729)>, {'action': 'presence', 'time': 1634133622.2154763, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:00:22,244 - DEBUG      - guest's message is correct
+2021-10-13 19:00:36,112 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=424, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49729)>, {'action': 'message', 'time': 1634133635.645781, 'user': {'account_name': 'guest'}, 'message': '123'}, []), {}. Вызвана из функции main
+2021-10-13 19:00:36,115 - DEBUG      - Got message [('guest', '123')]
+2021-10-13 19:00:58,006 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:00:58,019 - INFO       - Listen :7777
+2021-10-13 19:00:58,024 - INFO       - Host ('127.0.0.1', 50101) has connected
+2021-10-13 19:00:58,420 - INFO       - Host ('127.0.0.1', 50098) has connected
+2021-10-13 19:00:58,423 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=196, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50101)>, {'action': 'presence', 'time': 1634133658.0249467, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:00:58,423 - DEBUG      - guest's message is correct
+2021-10-13 19:00:58,425 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=200, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50098)>, {'action': 'presence', 'time': 1634133658.4182768, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:00:58,426 - DEBUG      - guest's message is correct
+2021-10-13 19:00:58,428 - INFO       - Host ('127.0.0.1', 50099) has connected
+2021-10-13 19:00:58,430 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=344, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50099)>, {'action': 'presence', 'time': 1634133658.4182768, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:00:58,431 - DEBUG      - guest's message is correct
+2021-10-13 19:00:58,456 - INFO       - Host ('127.0.0.1', 50100) has connected
+2021-10-13 19:00:58,475 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50100)>, {'action': 'presence', 'time': 1634133658.4332733, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:00:58,477 - DEBUG      - guest's message is correct
+2021-10-13 19:01:12,408 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:01:12,419 - INFO       - Listen :7777
+2021-10-13 19:01:12,902 - INFO       - Host ('127.0.0.1', 55595) has connected
+2021-10-13 19:01:12,918 - INFO       - Host ('127.0.0.1', 55596) has connected
+2021-10-13 19:01:12,922 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55595)>, {'action': 'presence', 'time': 1634133672.9026895, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:01:12,922 - DEBUG      - guest's message is correct
+2021-10-13 19:01:13,435 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=308, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55596)>, {'action': 'presence', 'time': 1634133672.9186807, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:01:13,436 - DEBUG      - guest's message is correct
+2021-10-13 19:01:24,185 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=308, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55596)>, {'action': 'message', 'time': 1634133684.1575372, 'user': {'account_name': 'guest'}, 'message': '123'}, []), {}. Вызвана из функции main
+2021-10-13 19:01:24,186 - DEBUG      - Got message [('guest', '123')]
+2021-10-13 19:01:32,595 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:01:32,606 - INFO       - Listen :7777
+2021-10-13 19:01:32,611 - INFO       - Host ('127.0.0.1', 55703) has connected
+2021-10-13 19:01:33,108 - INFO       - Host ('127.0.0.1', 55702) has connected
+2021-10-13 19:01:33,114 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55703)>, {'action': 'presence', 'time': 1634133692.61112, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:01:33,115 - DEBUG      - guest's message is correct
+2021-10-13 19:01:33,634 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=424, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55702)>, {'action': 'presence', 'time': 1634133693.1085389, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:01:33,635 - DEBUG      - guest's message is correct
+2021-10-13 19:04:23,448 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:04:23,461 - INFO       - Listen :7777
+2021-10-13 19:04:23,465 - INFO       - Host ('127.0.0.1', 56552) has connected
+2021-10-13 19:04:23,466 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=464, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 56552)>, {'action': 'presence', 'time': 1634133863.4649057, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:04:23,467 - DEBUG      - guest's message is correct
+2021-10-13 19:04:23,485 - INFO       - Host ('127.0.0.1', 56553) has connected
+2021-10-13 19:04:23,993 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=468, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 56553)>, {'action': 'presence', 'time': 1634133863.485903, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:04:23,994 - DEBUG      - guest's message is correct
+2021-10-13 19:04:29,649 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=468, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 56553)>, {'action': 'message', 'time': 1634133869.4777193, 'user': {'account_name': 'guest'}, 'message': '345345'}, []), {}. Вызвана из функции main
+2021-10-13 19:04:29,652 - DEBUG      - Got message [('guest', '345345')]
+2021-10-13 19:04:43,515 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:04:43,528 - INFO       - Listen :7777
+2021-10-13 19:04:48,054 - INFO       - Host ('127.0.0.1', 56669) has connected
+2021-10-13 19:04:48,567 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 56669)>, {'action': 'presence', 'time': 1634133888.0548425, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:04:48,567 - DEBUG      - guest's message is correct
+2021-10-13 19:04:51,642 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 56669)>, {'action': 'message', 'time': 1634133891.409644, 'user': {'account_name': 'guest'}, 'message': '123'}, []), {}. Вызвана из функции main
+2021-10-13 19:04:51,643 - DEBUG      - Got message [('guest', '123')]
+2021-10-13 19:05:35,252 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:05:35,263 - INFO       - Listen :7777
+2021-10-13 19:05:35,272 - INFO       - Host ('127.0.0.1', 56916) has connected
+2021-10-13 19:05:35,760 - INFO       - Host ('127.0.0.1', 56915) has connected
+2021-10-13 19:05:35,761 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=356, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 56916)>, {'action': 'presence', 'time': 1634133935.2729423, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:05:35,761 - DEBUG      - guest's message is correct
+2021-10-13 19:05:36,273 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=328, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 56915)>, {'action': 'presence', 'time': 1634133935.7604167, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:05:36,273 - DEBUG      - guest's message is correct
+2021-10-13 19:05:49,081 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=328, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 56915)>, {'action': 'message', 'time': 1634133948.6941993, 'user': {'account_name': 'guest'}, 'message': '123'}, []), {}. Вызвана из функции main
+2021-10-13 19:05:49,084 - DEBUG      - Got message [('guest', '123')]
+2021-10-13 19:06:53,958 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:06:53,973 - INFO       - Listen :7777
+2021-10-13 19:06:54,448 - INFO       - Host ('127.0.0.1', 63104) has connected
+2021-10-13 19:06:54,479 - INFO       - Host ('127.0.0.1', 63105) has connected
+2021-10-13 19:06:54,480 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=372, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63104)>, {'action': 'presence', 'time': 1634134014.4494128, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:06:54,480 - DEBUG      - guest's message is correct
+2021-10-13 19:06:54,982 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63105)>, {'action': 'presence', 'time': 1634134014.4798973, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:06:54,983 - DEBUG      - guest's message is correct
+2021-10-13 19:07:00,092 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63105)>, {'action': 'message', 'time': 1634134019.6616566, 'user': {'account_name': 'guest'}, 'message': '123'}, []), {}. Вызвана из функции main
+2021-10-13 19:07:00,093 - DEBUG      - Got message [('guest', '123')]
+2021-10-13 19:07:54,096 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:07:54,108 - INFO       - Listen :7777
+2021-10-13 19:07:54,111 - INFO       - Host ('127.0.0.1', 63421) has connected
+2021-10-13 19:07:54,617 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63421)>, {'action': 'presence', 'time': 1634134074.1119099, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:07:54,618 - DEBUG      - guest's message is correct
+2021-10-13 19:07:54,618 - INFO       - Host ('127.0.0.1', 63420) has connected
+2021-10-13 19:07:54,619 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=280, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63420)>, {'action': 'presence', 'time': 1634134074.61787, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:07:54,619 - DEBUG      - guest's message is correct
+2021-10-13 19:08:01,771 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=280, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63420)>, {'action': 'message', 'time': 1634134081.3816965, 'user': {'account_name': 'guest'}, 'message': '324'}, []), {}. Вызвана из функции main
+2021-10-13 19:10:59,959 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:10:59,970 - CRITICAL   - Cannot bind to :7777
+2021-10-13 19:11:14,699 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:11:14,709 - INFO       - Listen :7777
+2021-10-13 19:11:14,735 - INFO       - Host ('127.0.0.1', 59340) has connected
+2021-10-13 19:11:15,213 - INFO       - Host ('127.0.0.1', 59339) has connected
+2021-10-13 19:11:15,214 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=292, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59340)>, {'action': 'presence', 'time': 1634134274.7351046, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:11:15,215 - DEBUG      - guest's message is correct
+2021-10-13 19:11:15,715 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59339)>, {'action': 'presence', 'time': 1634134275.214693, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:11:15,716 - DEBUG      - guest's message is correct
+2021-10-13 19:11:25,870 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59339)>, {'action': 'message', 'time': 1634134285.5819752, 'user': {'account_name': 'guest'}, 'message': '112123'}, []), {}. Вызвана из функции main
+2021-10-13 19:11:25,871 - DEBUG      - Got message [('guest', '112123')]
+2021-10-13 19:11:35,551 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59339)>, {'action': 'message', 'time': 1634134295.0614028, 'user': {'account_name': 'guest'}, 'message': 'sdfsdfsd'}, []), {}. Вызвана из функции main
+2021-10-13 19:11:35,552 - DEBUG      - Got message [('guest', 'sdfsdfsd')]
+2021-10-13 19:11:37,596 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59339)>, {'action': 'message', 'time': 1634134297.197621, 'user': {'account_name': 'guest'}, 'message': '23423'}, []), {}. Вызвана из функции main
+2021-10-13 19:11:37,597 - DEBUG      - Got message [('guest', '23423')]
+2021-10-13 19:11:39,111 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59339)>, {'action': 'message', 'time': 1634134298.9896944, 'user': {'account_name': 'guest'}, 'message': '123123'}, []), {}. Вызвана из функции main
+2021-10-13 19:11:39,112 - DEBUG      - Got message [('guest', '123123')]
+2021-10-13 19:11:41,152 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59339)>, {'action': 'message', 'time': 1634134300.821781, 'user': {'account_name': 'guest'}, 'message': '456456'}, []), {}. Вызвана из функции main
+2021-10-13 19:11:41,155 - DEBUG      - Got message [('guest', '456456')]
+2021-10-13 19:26:39,574 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:26:39,586 - INFO       - Listen :7777
+2021-10-13 19:26:47,737 - INFO       - Host ('127.0.0.1', 63482) has connected
+2021-10-13 19:26:48,247 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=292, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63482)>, {'action': 'psresence', 'time': 1634135207.7374058, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:26:48,248 - CRITICAL   - guest's message is incorrect
+2021-10-13 19:53:18,280 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:53:18,291 - INFO       - Listen :7777
+2021-10-13 19:53:23,335 - INFO       - Host ('127.0.0.1', 59125) has connected
+2021-10-13 19:53:23,846 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59125)>, {'action': 'presence', 'time': 1634136803.336593, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:53:23,846 - DEBUG      - guest's message is correct
+2021-10-13 19:53:27,919 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59125)>, {'action': 'message', 'time': 1634136807.5519335, 'user': {'account_name': 'guest'}, 'message': '12312'}, []), {}. Вызвана из функции main
+2021-10-13 19:53:27,920 - DEBUG      - Got message 12312 from guest
+2021-10-13 19:53:27,920 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634136807.9208071, 'message': '12312'} to <socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59125)>
+2021-10-13 19:53:29,956 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59125)>, {'action': 'message', 'time': 1634136809.4882724, 'user': {'account_name': 'guest'}, 'message': '234234'}, []), {}. Вызвана из функции main
+2021-10-13 19:53:29,957 - DEBUG      - Got message 234234 from guest
+2021-10-13 19:53:29,957 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634136809.9571288, 'message': '234234'} to <socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59125)>
+2021-10-13 19:55:40,303 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:55:40,314 - INFO       - Listen :7777
+2021-10-13 19:55:40,318 - INFO       - Host ('127.0.0.1', 54774) has connected
+2021-10-13 19:55:40,327 - INFO       - Host ('127.0.0.1', 54775) has connected
+2021-10-13 19:55:40,327 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=392, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54774)>, {'action': 'presence', 'time': 1634136940.318836, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:55:40,327 - DEBUG      - guest's message is correct
+2021-10-13 19:55:40,842 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54775)>, {'action': 'presence', 'time': 1634136940.3278344, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:55:40,843 - DEBUG      - guest's message is correct
+2021-10-13 19:55:52,470 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=392, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54774)>, {'action': 'message', 'time': 1634136951.9667141, 'user': {'account_name': 'guest'}, 'message': 'Привет'}, []), {}. Вызвана из функции main
+2021-10-13 19:55:52,471 - DEBUG      - Got message Привет from guest
+2021-10-13 19:55:52,472 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634136952.4722075, 'message': 'Привет'} to <socket.socket fd=392, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54774)>
+2021-10-13 19:55:52,473 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634136952.4722075, 'message': 'Привет'} to <socket.socket fd=376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54775)>
+2021-10-13 19:56:02,083 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=392, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54774)>, {'action': 'message', 'time': 1634136961.6950939, 'user': {'account_name': 'guest'}, 'message': 'Hello'}, []), {}. Вызвана из функции main
+2021-10-13 19:56:02,084 - DEBUG      - Got message Hello from guest
+2021-10-13 19:56:02,085 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634136962.084483, 'message': 'Hello'} to <socket.socket fd=392, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54774)>
+2021-10-13 19:56:02,085 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634136962.084483, 'message': 'Hello'} to <socket.socket fd=376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54775)>
+2021-10-13 19:57:04,717 - INFO       - <socket.socket fd=392, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54774)> disconnected from the server
+2021-10-13 19:57:10,469 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:57:10,480 - INFO       - Listen :7777
+2021-10-13 19:57:10,978 - INFO       - Host ('127.0.0.1', 60601) has connected
+2021-10-13 19:57:10,978 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60601)>, {'action': 'presence', 'time': 1634137030.9788532, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:57:10,979 - DEBUG      - guest's message is correct
+2021-10-13 19:57:10,979 - INFO       - Host ('127.0.0.1', 60602) has connected
+2021-10-13 19:57:10,980 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=464, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60602)>, {'action': 'presence', 'time': 1634137030.9788532, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:57:10,980 - DEBUG      - guest's message is correct
+2021-10-13 19:57:18,605 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60601)>, {'action': 'message', 'time': 1634137038.1985855, 'user': {'account_name': 'guest'}, 'message': 'Hello'}, []), {}. Вызвана из функции main
+2021-10-13 19:57:18,606 - DEBUG      - Got message Hello from guest
+2021-10-13 19:57:18,606 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137038.6065881, 'message': 'Hello'} to <socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60601)>
+2021-10-13 19:57:18,606 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137038.6065881, 'message': 'Hello'} to <socket.socket fd=464, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60602)>
+2021-10-13 19:57:19,108 - INFO       - <socket.socket fd=464, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60602)> disconnected from the server
+2021-10-13 19:58:33,324 - INFO       - <socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60601)> disconnected from the server
+2021-10-13 19:58:37,195 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:58:37,206 - INFO       - Listen :7777
+2021-10-13 19:58:37,210 - INFO       - Host ('127.0.0.1', 61021) has connected
+2021-10-13 19:58:37,219 - INFO       - Host ('127.0.0.1', 61022) has connected
+2021-10-13 19:58:37,220 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=420, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61021)>, {'action': 'presence', 'time': 1634137117.2101629, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:58:37,220 - DEBUG      - guest's message is correct
+2021-10-13 19:58:37,731 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=352, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61022)>, {'action': 'presence', 'time': 1634137117.2201629, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:58:37,742 - DEBUG      - guest's message is correct
+2021-10-13 19:58:43,844 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=420, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61021)>, {'action': 'message', 'time': 1634137123.5570135, 'user': {'account_name': 'guest'}, 'message': 'Hello'}, []), {}. Вызвана из функции main
+2021-10-13 19:58:43,846 - DEBUG      - Got message Hello from guest
+2021-10-13 19:58:43,846 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137123.8469152, 'message': 'Hello'} to <socket.socket fd=420, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61021)>
+2021-10-13 19:58:43,847 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137123.8469152, 'message': 'Hello'} to <socket.socket fd=352, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61022)>
+2021-10-13 19:58:44,357 - INFO       - <socket.socket fd=352, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61022)> disconnected from the server
+2021-10-13 19:58:46,373 - INFO       - <socket.socket fd=420, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61021)> disconnected from the server
+2021-10-13 19:59:33,258 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 19:59:33,270 - INFO       - Listen :7777
+2021-10-13 19:59:33,281 - INFO       - Host ('127.0.0.1', 52698) has connected
+2021-10-13 19:59:33,771 - INFO       - Host ('127.0.0.1', 52697) has connected
+2021-10-13 19:59:33,772 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=416, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52698)>, {'action': 'presence', 'time': 1634137173.2819114, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:59:33,784 - DEBUG      - guest's message is correct
+2021-10-13 19:59:34,290 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=328, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52697)>, {'action': 'presence', 'time': 1634137173.7720122, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 19:59:34,291 - DEBUG      - guest's message is correct
+2021-10-13 19:59:40,378 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=416, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52698)>, {'action': 'message', 'time': 1634137180.2871914, 'user': {'account_name': 'guest'}, 'message': 'Привет'}, []), {}. Вызвана из функции main
+2021-10-13 19:59:40,380 - DEBUG      - Got message Привет from guest
+2021-10-13 19:59:40,381 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137180.381109, 'message': 'Привет'} to <socket.socket fd=416, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52698)>
+2021-10-13 19:59:40,382 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137180.381109, 'message': 'Привет'} to <socket.socket fd=328, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52697)>
+2021-10-13 19:59:40,885 - INFO       - <socket.socket fd=328, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52697)> disconnected from the server
+2021-10-13 20:00:39,826 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 20:00:39,839 - INFO       - Listen :7777
+2021-10-13 20:00:40,338 - INFO       - Host ('127.0.0.1', 52936) has connected
+2021-10-13 20:00:40,354 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=436, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52936)>, {'action': 'presence', 'time': 1634137240.3272586, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 20:00:40,354 - DEBUG      - guest's message is correct
+2021-10-13 20:00:40,355 - INFO       - Host ('127.0.0.1', 52935) has connected
+2021-10-13 20:00:40,355 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=356, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52935)>, {'action': 'presence', 'time': 1634137240.3272586, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 20:00:40,356 - DEBUG      - guest's message is correct
+2021-10-13 20:00:48,493 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=356, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52935)>, {'action': 'message', 'time': 1634137247.9907515, 'user': {'account_name': 'guest'}, 'message': 'Hello'}, []), {}. Вызвана из функции main
+2021-10-13 20:00:48,494 - DEBUG      - Got message Hello from guest
+2021-10-13 20:00:48,495 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137248.495231, 'message': 'Hello'} to <socket.socket fd=436, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52936)>
+2021-10-13 20:00:48,496 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137248.495231, 'message': 'Hello'} to <socket.socket fd=356, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52935)>
+2021-10-13 20:01:32,762 - INFO       - <socket.socket fd=436, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52936)> disconnected from the server
+2021-10-13 20:01:37,471 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 20:01:37,482 - INFO       - Listen :7777
+2021-10-13 20:01:37,497 - INFO       - Host ('127.0.0.1', 50436) has connected
+2021-10-13 20:01:37,500 - INFO       - Host ('127.0.0.1', 50437) has connected
+2021-10-13 20:01:37,501 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50436)>, {'action': 'presence', 'time': 1634137297.4977386, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 20:01:37,501 - DEBUG      - guest's message is correct
+2021-10-13 20:01:38,004 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=284, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50437)>, {'action': 'presence', 'time': 1634137297.5007362, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 20:01:38,007 - DEBUG      - guest's message is correct
+2021-10-13 20:01:41,544 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50436)>, {'action': 'message', 'time': 1634137301.23891, 'user': {'account_name': 'guest'}, 'message': 'Heek'}, []), {}. Вызвана из функции main
+2021-10-13 20:01:41,545 - DEBUG      - Got message Heek from guest
+2021-10-13 20:01:41,545 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137301.5459352, 'message': 'Heek'} to <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50436)>
+2021-10-13 20:01:41,546 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137301.5459352, 'message': 'Heek'} to <socket.socket fd=284, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50437)>
+2021-10-13 20:01:57,770 - INFO       - <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50436)> disconnected from the server
+2021-10-13 20:01:58,784 - INFO       - <socket.socket fd=284, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50437)> disconnected from the server
+2021-10-13 20:02:01,684 - DEBUG      - Вызов функции parse_arguments с параметрами (), {}. Вызвана из функции main
+2021-10-13 20:02:01,697 - INFO       - Listen :7777
+2021-10-13 20:02:02,209 - INFO       - Host ('127.0.0.1', 50539) has connected
+2021-10-13 20:02:02,210 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50539)>, {'action': 'presence', 'time': 1634137322.1887062, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 20:02:02,214 - DEBUG      - guest's message is correct
+2021-10-13 20:02:02,218 - INFO       - Host ('127.0.0.1', 50540) has connected
+2021-10-13 20:02:02,219 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=244, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50540)>, {'action': 'presence', 'time': 1634137322.203706, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 20:02:02,225 - DEBUG      - guest's message is correct
+2021-10-13 20:02:06,307 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50539)>, {'action': 'message', 'time': 1634137326.0065565, 'user': {'account_name': 'guest'}, 'message': 'Hekko'}, []), {}. Вызвана из функции main
+2021-10-13 20:02:06,308 - DEBUG      - Got message Hekko from guest
+2021-10-13 20:02:06,309 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137326.3098931, 'message': 'Hekko'} to <socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50539)>
+2021-10-13 20:02:06,310 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137326.3098931, 'message': 'Hekko'} to <socket.socket fd=244, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50540)>
+2021-10-13 20:02:34,579 - INFO       - Host ('127.0.0.1', 50709) has connected
+2021-10-13 20:02:35,087 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50709)>, {'action': 'presence', 'time': 1634137354.5795026, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 20:02:35,088 - DEBUG      - guest's message is correct
+2021-10-13 20:02:46,209 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50539)>, {'action': 'message', 'time': 1634137365.8704274, 'user': {'account_name': 'guest'}, 'message': 'Hello again'}, []), {}. Вызвана из функции main
+2021-10-13 20:02:46,210 - DEBUG      - Got message Hello again from guest
+2021-10-13 20:02:46,210 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137366.2102773, 'message': 'Hello again'} to <socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50539)>
+2021-10-13 20:02:46,211 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137366.2102773, 'message': 'Hello again'} to <socket.socket fd=244, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50540)>
+2021-10-13 20:02:46,211 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634137366.2102773, 'message': 'Hello again'} to <socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50709)>
+2021-10-13 21:25:01,677 - INFO       - Host ('127.0.0.1', 52834) has connected
+2021-10-13 21:25:02,188 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52834)>, {'action': 'presence', 'time': 1634142301.6782246, 'type': 'status', 'user': {'account_name': 'guest'}}, []), {}. Вызвана из функции main
+2021-10-13 21:25:02,189 - DEBUG      - guest's message is correct
+2021-10-13 21:25:08,270 - DEBUG      - Вызов функции process_client_message с параметрами (<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52834)>, {'action': 'message', 'time': 1634142308.2001355, 'user': {'account_name': 'guest'}, 'message': 'И от меня привет'}, []), {}. Вызвана из функции main
+2021-10-13 21:25:08,271 - DEBUG      - Got message И от меня привет from guest
+2021-10-13 21:25:08,271 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634142308.271136, 'message': 'И от меня привет'} to <socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50539)>
+2021-10-13 21:25:08,271 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634142308.271136, 'message': 'И от меня привет'} to <socket.socket fd=244, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50540)>
+2021-10-13 21:25:08,271 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634142308.271136, 'message': 'И от меня привет'} to <socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50709)>
+2021-10-13 21:25:08,272 - INFO       - Sending {'action': 'message', 'sender': 'guest', 'time': 1634142308.271136, 'message': 'И от меня привет'} to <socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52834)>
+2021-10-13 21:25:28,119 - INFO       - <socket.socket fd=244, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50540)> disconnected from the server
+2021-10-13 21:25:32,188 - INFO       - <socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50709)> disconnected from the server
+2021-10-13 21:25:38,287 - INFO       - <socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52834)> disconnected from the server
+2021-10-13 21:25:43,376 - INFO       - <socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50539)> disconnected from the server

@@ -6,6 +6,6 @@ from sqlalchemy import create_engine
 
 base_dir = str(Path(__file__).parent.parent.resolve())
 
-engine_client = create_engine(f'sqlite:///{base_dir}\\db.sqlite', echo=True, connect_args={'check_same_thread': False})
+engine = create_engine(f'sqlite:///{base_dir}\\db.sqlite', echo=True, connect_args={'check_same_thread': False})
 # Base.metadata.create_all(engine)
-SessionLocal = sessionmaker(bind=engine_client)
+SessionLocal = sessionmaker(bind=engine)
