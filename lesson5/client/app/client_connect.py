@@ -38,4 +38,5 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Login"))
+        self.loginEdit.setText(_translate("MainWindow", "tonych"))
         self.connectBtn.setText(_translate("MainWindow", "Connect"))

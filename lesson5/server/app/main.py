@@ -124,7 +124,8 @@ class Server(metaclass=ServerVerifier):
         elif ACTION in msg and msg[ACTION] == 'message' and TIME in msg and ACCOUNT_NAME in msg:
             if msg[DESTINATION] in client_list.keys():
                 msg_list.append((msg[ACCOUNT_NAME], msg[MESSAGE], msg[DESTINATION]))
-                LOG.debug(f'Got message {msg[MESSAGE]} from {msg[ACCOUNT_NAME]}')
+                # print(f'Got message {msg[MESSAGE]}')
+                # LOG.debug(f'Got message {msg[MESSAGE]} from {msg[ACCOUNT_NAME]}')
             else:
                 LOG.critical(f'{msg[DESTINATION]}\' does not exist')
                 send_message(sock, {RESPONSE: '445'})
@@ -194,6 +195,7 @@ class Server(metaclass=ServerVerifier):
 
     @property
     def online_users(self):
+        print(self.clients.keys())
         return list(self.clients.keys())
 
     def run(self):
@@ -216,6 +218,7 @@ class Server(metaclass=ServerVerifier):
         print(f'Server has started.\nListen {listen_name}:{self.server_socket.port}')
 
         while True:
+            print(self.clients.keys())
             try:
                 client_socket, addr = self.server_socket.accept()
             except OSError:
@@ -241,6 +244,7 @@ class Server(metaclass=ServerVerifier):
                         self.process_client_message(host, get_message(host), messages, self.clients)
                     except:
                         LOG.info(f'{host} disconnected from the server')
+                        print(f'{host} disconnected from the server')
 
                         # удаление отключенного пользователя из словаря
                         key_host = ''
@@ -277,7 +281,6 @@ if __name__ == '__main__':
     def get_online_users():
         ui.label_3.setText('\n'.join(srv.online_users))
 
-
     def thread(addr, port):
         ui.label_4.setText('Connected')
         ui.pushButton.setDisabled(True)
@@ -289,8 +292,8 @@ if __name__ == '__main__':
         srv.port = port
         srv.run()
 
-    timer = QtCore.QTimer()
-    timer.timeout.connect(get_online_users)
-    timer.start(1000)
+    # timer = QtCore.QTimer()
+    # timer.timeout.connect(get_online_users)
+    # timer.start(1000)
 
     sys.exit(app.exec_())

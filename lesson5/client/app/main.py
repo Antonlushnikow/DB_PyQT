@@ -12,6 +12,8 @@ from sqlalchemy.orm import sessionmaker
 
 import client_form
 
+from client_gui import MainWindow
+
 base_dir = str(Path(__file__).parent.parent.resolve())
 print(base_dir)
 if base_dir not in sys.path:
@@ -56,6 +58,7 @@ class Client(metaclass=ClientVerifier):
         self.user_list = []
         self.connected = False
         self.name = 'guest'
+        self.inbox = []
 
     @staticmethod
     def show_help():
@@ -79,11 +82,12 @@ class Client(metaclass=ClientVerifier):
         while True:
             try:
                 msg = get_message(sock)
-                print(msg)
+                # print(msg)
                 if ACTION in msg and msg[ACTION] == 'message' and SENDER in msg and MESSAGE in msg \
                    and msg[DESTINATION] == name:
                     LOG.debug(f'Got message from {msg[SENDER]}')
                     print(f'\nПолучено сообщение от пользователя {msg[SENDER]}:\n{msg[MESSAGE]}')
+                    self.inbox.append((msg[SENDER], msg[MESSAGE]))
                 # если пришел код 445 - пользователь-получатель не существует
                 elif RESPONSE in msg:
                     if msg[RESPONSE] == '445':
@@ -96,7 +100,7 @@ class Client(metaclass=ClientVerifier):
                     # вывод списка пользователей
                     elif msg[RESPONSE] == '202' and USER_LIST in msg:
                         self.user_list = msg[USER_LIST]
-                        print(f'Список пользователей: {msg[USER_LIST]}')
+                        # print(f'Список пользователей: {msg[USER_LIST]}')
                     # вывод списка контактов
                     elif msg[RESPONSE] == '202' and CONTACT_LIST in msg:
                         print(f'Список контактов: {msg[CONTACT_LIST]}')
@@ -199,17 +203,16 @@ class Client(metaclass=ClientVerifier):
         return exit_msg
 
     @log
-    def create_message(self, sock, account_name='guest'):
+    def create_message(self, account_name='guest'):
         """
         Возвращает сформированное сообщение или завершает процесс
-        :param sock:
         :param account_name:
         :return msg:
         """
         dst_name = input('Кому:\n>>')
         msg_body = input('Введите текст сообщения или ] для закрытия программы:\n>> ')
         if msg_body == ']':
-            sock.close()
+            self.client_socket.close()
             LOG.info(f'{account_name} завершил программу')
             sys.exit(0)
         else:
@@ -220,8 +223,34 @@ class Client(metaclass=ClientVerifier):
                 MESSAGE: msg_body,
                 DESTINATION: dst_name
             }
-            add_message(account_name, dst_name, msg_body)
+            # add_message(account_name, dst_name, msg_body)
             return msg
+
+    @log
+    def create_gui_message(self, account_name, dst_name, msg_body):
+        """
+        Возвращает сформированное сообщение или завершает процесс
+        :param account_name:
+        :param msg_body:
+        :param dst_name:
+        :return msg:
+        """
+        # dst_name = input('Кому:\n>>')
+        # msg_body = input('Введите текст сообщения или ] для закрытия программы:\n>> ')
+        # if msg_body == ']':
+        #     self.client_socket.close()
+        #     LOG.info(f'{account_name} завершил программу')
+        #     sys.exit(0)
+        # else:
+        msg = {
+            ACTION: 'message',
+            TIME: time(),
+            ACCOUNT_NAME: account_name,
+            MESSAGE: msg_body,
+            DESTINATION: dst_name
+        }
+        # add_message(account_name, dst_name, msg_body)
+        return msg
 
     @log
     def check_response(self, response):
@@ -249,6 +278,40 @@ class Client(metaclass=ClientVerifier):
                 return False
         raise ValueError
 
+    def send_gui_message(self, sock, name, dst, msg):
+
+        print(sock == self.client_socket)
+        try:
+            send_message(sock, {
+                ACTION: 'message',
+                TIME: time(),
+                ACCOUNT_NAME: 'tonych',
+                MESSAGE: 'msg_body',
+                DESTINATION: 'tonych'
+            })
+            # send_message(sock, self.create_message(name))
+        except:
+            print(f'Соединение с сервером было разорвано')
+            LOG.critical(f'Соединение с сервером было разорвано')
+            sys.exit(1)
+
+
+        # try:
+        #     send_message(sock, {
+        #                 ACTION: 'message',
+        #                 TIME: time(),
+        #                 ACCOUNT_NAME: 'tonych',
+        #                 MESSAGE: 'msg_body',
+        #                 DESTINATION: 'tonych'
+        #     })
+        #
+        #
+        #                  # self.create_gui_message(name, dst, msg))
+        # except:
+        #     print(f'Соединение с сервером было разорвано')
+        #     LOG.critical(f'Соединение с сервером было разорвано')
+        #     sys.exit(1)
+
     @log
     def console_interact(self, sock, name):
         """
@@ -266,8 +329,16 @@ class Client(metaclass=ClientVerifier):
 
             # отправка сообщения
             elif choice == 'send':
+                print(sock == self.client_socket)
                 try:
-                    send_message(sock, self.create_message(sock, name))
+                    send_message(sock, {
+                        ACTION: 'message',
+                        TIME: time(),
+                        ACCOUNT_NAME: 'tonych',
+                        MESSAGE: 'msg_body',
+                        DESTINATION: 'tonych'
+                    })
+                    # send_message(sock, self.create_message(name))
                 except:
                     print(f'Соединение с сервером было разорвано')
                     LOG.critical(f'Соединение с сервером было разорвано')
@@ -364,6 +435,7 @@ class Client(metaclass=ClientVerifier):
             LOG.info(f'Connect to {server_name}:{server_port}')
             send_message(self.client_socket, self.create_msg_presence(client_name))
             resp = get_message(self.client_socket)
+            print(f'resp - {resp}')
             if not self.check_response(resp):
                 sleep(1)
                 sys.exit(1)
@@ -379,13 +451,15 @@ class Client(metaclass=ClientVerifier):
             receiver.daemon = True
             receiver.start()
 
-            sender = Thread(target=self.console_interact, args=(self.client_socket, client_name))
-            sender.daemon = True
-            sender.start()
+            self.console_interact(self.client_socket, client_name)
+
+            # sender = Thread(target=self.console_interact, args=(self.client_socket, client_name))
+            # sender.daemon = True
+            # sender.start()
 
             while True:
                 sleep(1)
-                if receiver.is_alive() and sender.is_alive():
+                if receiver.is_alive():
                     continue
                 break
 
@@ -393,29 +467,34 @@ class Client(metaclass=ClientVerifier):
 if __name__ == '__main__':
     c = Client()
     app = QApplication(sys.argv)
-    window = QMainWindow()
-    ui = client_form.Ui_MainWindow()
-    ui.setupUi(window)
-
-    def thread(name):
-        ui.pushButton.setDisabled(True)
-        threading.Thread(target=start, args=(name,), daemon=True).start()
-
-    ui.pushButton.clicked.connect(lambda: thread(ui.lineEdit.text()))
+    window = MainWindow(c)
     window.show()
-
-
-    def start(name):
-        c.name = name
-        c.launch()
-
-    def get_online_users():
-        if c.connected:
-            c.check_online_users()
-            ui.label_3.setText('\n'.join(c.online_users))
-
-    timer = QtCore.QTimer()
-    timer.timeout.connect(get_online_users)
-    timer.start(1000)
-
     sys.exit(app.exec_())
+    # c = Client()
+    # app = QApplication(sys.argv)
+    # window = QMainWindow()
+    # ui = client_form.Ui_MainWindow()
+    # ui.setupUi(window)
+    #
+    # def thread(name):
+    #     ui.pushButton.setDisabled(True)
+    #     threading.Thread(target=start, args=(name,), daemon=True).start()
+    #
+    # ui.pushButton.clicked.connect(lambda: thread(ui.lineEdit.text()))
+    # window.show()
+    #
+    #
+    # def start(name):
+    #     c.name = name
+    #     c.launch()
+    #
+    # def get_online_users():
+    #     if c.connected:
+    #         c.check_online_users()
+    #         ui.label_3.setText('\n'.join(c.online_users))
+    #
+    # timer = QtCore.QTimer()
+    # timer.timeout.connect(get_online_users)
+    # timer.start(1000)
+    #
+    # sys.exit(app.exec_())
