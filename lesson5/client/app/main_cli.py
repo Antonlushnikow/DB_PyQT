@@ -4,11 +4,9 @@ from socket import socket, AF_INET, SOCK_STREAM
 from time import time, sleep
 import sys
 
-from PyQt5.QtWidgets import QApplication
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from client_gui import MainWindow
 
 base_dir = str(Path(__file__).parent.parent.resolve())
 print(base_dir)
@@ -16,7 +14,7 @@ if base_dir not in sys.path:
     sys.path.append(base_dir)
 
 
-from db_handlers import add_message, add_contact
+from db_handlers import add_message
 from common.utils import get_message, send_message
 from common.constants import DEFAULT_PORT, DEFAULT_HOST, ACTION, TIME, RESPONSE, TYPE, ACCOUNT_NAME, MESSAGE, \
     SENDER, DESTINATION, USER_LIST, CONTACT_LIST, CONTACT_NAME
@@ -27,8 +25,41 @@ from threading import Thread
 
 import dis
 
+from models import Base
 
 LOG = logging.getLogger('app.client')
+
+
+# # Создание БД
+# engine = create_engine('sqlite:///db_client.sqlite', echo=True)
+# Base.metadata.create_all(engine)
+# Session = sessionmaker(engine)
+
+
+# def db_adduser(obj):
+#     """
+#     Добавляет пользователя в БД, если пользователя в ней нет.
+#     Регистрирует время входа пользователя в таблице user_history.
+#     """
+#     try:
+#         with Session() as session:
+#             session.add(obj)
+#             session.commit()
+#     except:
+#         pass
+#
+#
+# def db_addmessage(obj):
+#     """
+#     Добавляет пользователя в БД, если пользователя в ней нет.
+#     Регистрирует время входа пользователя в таблице user_history.
+#     """
+#     try:
+#         with Session() as session:
+#             session.add(obj)
+#             session.commit()
+#     except:
+#         pass
 
 
 class ClientVerifier(type):
@@ -44,16 +75,23 @@ class ClientVerifier(type):
                 raise TypeError("Сокет не должен создаваться на уровне класса")
         if '(SOCK_STREAM)' not in dis.Bytecode(clsdict['__init__']).dis():
             raise ConnectionError("Сокет должен использовать TCP")
+
         type.__init__(cls, clsname, bases, clsdict)
 
 
 class Client(metaclass=ClientVerifier):
     def __init__(self):
         self.client_socket = socket(AF_INET, SOCK_STREAM)
-        self.user_list = []
-        self.connected = False
-        self.name = 'guest'
-        self.inbox = []
+
+    @staticmethod
+    def show_help():
+        print('send - отправка сообщения\n'
+              'list - список подключенных пользователей\n'
+              'contacts - список контактов\n'
+              'add_contact\n'
+              'del_contact\n'
+              'exit - выход\n'
+              'help - вывод подсказки')
 
     @log
     def print_message(self, sock, name):
@@ -67,12 +105,11 @@ class Client(metaclass=ClientVerifier):
         while True:
             try:
                 msg = get_message(sock)
+                print(msg)
                 if ACTION in msg and msg[ACTION] == 'message' and SENDER in msg and MESSAGE in msg \
                    and msg[DESTINATION] == name:
                     LOG.debug(f'Got message from {msg[SENDER]}')
                     print(f'\nПолучено сообщение от пользователя {msg[SENDER]}:\n{msg[MESSAGE]}')
-                    self.inbox.append((msg[SENDER], msg[MESSAGE]))
-                    print('')
                 # если пришел код 445 - пользователь-получатель не существует
                 elif RESPONSE in msg:
                     if msg[RESPONSE] == '445':
@@ -84,8 +121,7 @@ class Client(metaclass=ClientVerifier):
                         print('Инфо: Пользователь существует')
                     # вывод списка пользователей
                     elif msg[RESPONSE] == '202' and USER_LIST in msg:
-                        self.user_list = msg[USER_LIST]
-                        # print(f'Список пользователей: {msg[USER_LIST]}')
+                        print(f'Список пользователей: {msg[USER_LIST]}')
                     # вывод списка контактов
                     elif msg[RESPONSE] == '202' and CONTACT_LIST in msg:
                         print(f'Список контактов: {msg[CONTACT_LIST]}')
@@ -111,6 +147,7 @@ class Client(metaclass=ClientVerifier):
         }
         return presence_msg
 
+
     @log
     def create_msg_get_contacts(self, account_name):
         """
@@ -124,6 +161,7 @@ class Client(metaclass=ClientVerifier):
             ACCOUNT_NAME: account_name
         }
         return get_contacts_msg
+
 
     @log
     def create_msg_add_contact(self, account_name):
@@ -140,6 +178,7 @@ class Client(metaclass=ClientVerifier):
             CONTACT_NAME: contact_name
         }
         return add_contact_msg
+
 
     @log
     def create_msg_del_contact(self, account_name):
@@ -186,23 +225,29 @@ class Client(metaclass=ClientVerifier):
         return exit_msg
 
     @log
-    def create_gui_message(self, account_name, dst_name, msg_body):
+    def create_message(self, sock, account_name='guest'):
         """
         Возвращает сформированное сообщение или завершает процесс
+        :param sock:
         :param account_name:
-        :param msg_body:
-        :param dst_name:
         :return msg:
         """
-        msg = {
-            ACTION: 'message',
-            TIME: time(),
-            ACCOUNT_NAME: account_name,
-            MESSAGE: msg_body,
-            DESTINATION: dst_name
-        }
-        add_message(account_name, dst_name, msg_body)
-        return msg
+        dst_name = input('Кому:\n>>')
+        msg_body = input('Введите текст сообщения или ] для закрытия программы:\n>> ')
+        if msg_body == ']':
+            sock.close()
+            LOG.info(f'{account_name} завершил программу')
+            sys.exit(0)
+        else:
+            msg = {
+                ACTION: 'message',
+                TIME: time(),
+                ACCOUNT_NAME: account_name,
+                MESSAGE: msg_body,
+                DESTINATION: dst_name
+            }
+            add_message(account_name, dst_name, msg_body)
+            return msg
 
     @log
     def check_response(self, response):
@@ -220,19 +265,85 @@ class Client(metaclass=ClientVerifier):
                 LOG.info('Server has responded with status 444 - Login is incorrect')
                 print('Логин занят, попробуйте другой')
                 return False
+            # elif response[RESPONSE] == '445':
+            #     LOG.info('Server has responded with status 445 - Destination user does not exist')
+            #     print('Отправитель не найден')
+            #     return False
             else:
                 LOG.critical('Server has responded with error 400 - Bad Request')
                 print('Server has responded with error 400 - Bad Request')
                 return False
         raise ValueError
 
-    def send_gui_message(self, sock, name, dst, msg):
-        try:
-            send_message(sock, self.create_gui_message(name, dst, msg))
-        except:
-            print(f'Соединение с сервером было разорвано')
-            LOG.critical(f'Соединение с сервером было разорвано')
-            sys.exit(1)
+    @log
+    def console_interact(self, sock, name):
+        """
+        Запрашивает и обрабатывает команды пользователя.
+        :param sock:
+        :param name:
+        """
+        while True:
+            sleep(0.5)
+            choice = input(f'Пользователь <<{name}>>\nВведите команду или help для помощи:\n>>')
+
+            # вывод подсказки
+            if choice == 'help':
+                self.show_help()
+
+            # отправка сообщения
+            elif choice == 'send':
+                try:
+                    send_message(sock, self.create_message(sock, name))
+                except:
+                    print(f'Соединение с сервером было разорвано')
+                    LOG.critical(f'Соединение с сервером было разорвано')
+                    sys.exit(1)
+
+            # вывод списка пользователей
+            elif choice == 'list':
+                try:
+                    send_message(sock, self.create_msg_list(name))
+                except:
+                    print(f'Соединение с сервером было разорвано')
+                    LOG.critical(f'Соединение с сервером было разорвано')
+                    sys.exit(1)
+
+            # вывод списка пользователей
+            elif choice == 'add_contact':
+                try:
+                    send_message(sock, self.create_msg_add_contact(name))
+                except:
+                    print(f'Соединение с сервером было разорвано')
+                    LOG.critical(f'Соединение с сервером было разорвано')
+                    sys.exit(1)
+
+            # вывод списка пользователей
+            elif choice == 'del_contact':
+                try:
+                    send_message(sock, self.create_msg_del_contact(name))
+                except:
+                    print(f'Соединение с сервером было разорвано')
+                    LOG.critical(f'Соединение с сервером было разорвано')
+                    sys.exit(1)
+
+            # вывод списка контактов
+            elif choice == 'contacts':
+                try:
+                    send_message(sock, self.create_msg_get_contacts(name))
+                except:
+                    print(f'Соединение с сервером было разорвано')
+                    LOG.critical(f'Соединение с сервером было разорвано')
+                    sys.exit(1)
+
+            # выход
+            elif choice == 'exit':
+                send_message(sock, self.create_msg_exit(name))
+                sleep(1)
+                break
+            else:
+                print('Команда не распознана\n')
+                self.show_help()
+
 
     @log
     def parse_arguments(self):
@@ -246,7 +357,7 @@ class Client(metaclass=ClientVerifier):
         parser = argparse.ArgumentParser()
         parser.add_argument('-a', '--addr', default=DEFAULT_HOST)
         parser.add_argument('-p', '--port', type=int, default=DEFAULT_PORT)
-        parser.add_argument('-n', '--name', default=self.name)
+        parser.add_argument('-n', '--name')
         namespace = parser.parse_args(sys.argv[1:])
         server_name = namespace.addr
         server_port = namespace.port
@@ -259,35 +370,24 @@ class Client(metaclass=ClientVerifier):
 
         return server_name, server_port, client_name
 
-    def check_online_users(self):
-        send_message(self.client_socket, self.create_msg_list())
-
-    @property
-    def online_users(self):
-        return self.user_list
-
-    def add_contact_(self, user, contact):
-        add_contact(user, contact)
-
-    def del_contact(self):
-        pass
-
     def launch(self):
         server_name, server_port, client_name = self.parse_arguments()
         LOG.info(f'Подключение к {server_name}:{server_port}')
 
+        if not client_name:
+            client_name = input('Введите Ваше имя:')
+
         try:
+            # client_socket = socket(AF_INET, SOCK_STREAM)
             self.client_socket.connect((server_name, server_port))
             LOG.info(f'Connect to {server_name}:{server_port}')
             send_message(self.client_socket, self.create_msg_presence(client_name))
             resp = get_message(self.client_socket)
-            print(f'resp - {resp}')
             if not self.check_response(resp):
                 sleep(1)
                 sys.exit(1)
 
             LOG.info(f'Got message from server with response {resp}')
-            self.connected = True
         except ConnectionRefusedError:
             print('Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')
             sys.exit(1)
@@ -297,16 +397,21 @@ class Client(metaclass=ClientVerifier):
             receiver.daemon = True
             receiver.start()
 
+            sender = Thread(target=self.console_interact, args=(self.client_socket, client_name))
+            sender.daemon = True
+            sender.start()
+
             while True:
                 sleep(1)
-                if receiver.is_alive():
+                if receiver.is_alive() and sender.is_alive():
                     continue
                 break
 
 
-if __name__ == '__main__':
+def main():
     c = Client()
-    app = QApplication(sys.argv)
-    window = MainWindow(c)
-    window.show()
-    sys.exit(app.exec_())
+    c.launch()
+
+
+if __name__ == '__main__':
+    main()

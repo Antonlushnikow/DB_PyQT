@@ -218,7 +218,7 @@ class Server(metaclass=ServerVerifier):
         print(f'Server has started.\nListen {listen_name}:{self.server_socket.port}')
 
         while True:
-            print(self.clients.keys())
+            # print(self.clients.keys())
             try:
                 client_socket, addr = self.server_socket.accept()
             except OSError:
@@ -235,6 +235,8 @@ class Server(metaclass=ServerVerifier):
             try:
                 if self.clients:
                     hosts_who_send, hosts_who_listen, _ = select.select(self.clients.values(), self.clients.values(), [], 0)
+                    print(f'hosts_who_send: {hosts_who_send}')
+                    print(f'hosts_who_listen: {hosts_who_listen}')
             except OSError:
                 pass
 

@@ -41,12 +41,16 @@ class MainWindow(QMainWindow):
         self.client.name = self.login
         threading.Thread(target=self.client.launch, daemon=True).start()
         self.users = UsersWindow(self.login, self.client)
+        # sender1 = threading.Thread(target=self.users.get_online_users)
+        # sender1.daemon = True
+        # sender1.start()
+
         self.users.show()
         self.hide()
 
-        self.timer = QtCore.QTimer()
-        self.timer.timeout.connect(self.users.get_online_users)
-        self.timer.start(1000)
+        # self.timer = QtCore.QTimer()
+        # self.timer.timeout.connect(self.users.get_online_users)
+        # self.timer.start(1000)
 
 
         # if self.client.connected:
@@ -63,26 +67,19 @@ class UsersWindow(QMainWindow):
         super(UsersWindow, self).__init__(parent)
         self.ui = client_users.Ui_MainWindow()
         self.ui.setupUi(self)
-        # self.ui.sendBtn.clicked.connect(self.send)
         self.login = login
         self.ui.userLbl.setText(self.login)
         self.client = client
         self.msg = None
         self.address = None
         self.ui.onlineView.itemDoubleClicked.connect(self.open_chat)
-
-    # def send(self):
-    #     self.msg = self.ui.msgEdit.toPlainText()
-    #     self.ui.msgEdit.setText('')
-    #     itm = MyQListWidgetItem(self.login)
-    #     itm.setText(f'{self.login}: {self.msg}')
-    #     self.ui.chatView.insertItem(0, itm)
+        self.ui.refreshBtn.clicked.connect(self.get_online_users)
+        self.ui.addBtn.clicked.connect(self.add_contact)
 
     def get_online_users(self):
         if self.client.connected:
             self.ui.onlineView.clear()
             self.client.check_online_users()
-            # print(self.client.online_users)
 
             for user in self.client.online_users:
                 itm = QListWidgetItem()
@@ -96,12 +93,15 @@ class UsersWindow(QMainWindow):
         sender = threading.Thread(target=self.chat.run)
         sender.daemon = True
         sender.start()
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.chat.get_messages)
+        self.timer.start(1000)
 
         self.chat.show()
-        print(item.text())
-        # self.timer = QtCore.QTimer()
-        # self.timer.timeout.connect(self.chat.get_messages)
-        # self.timer.start(1000)
+
+    def add_contact(self):
+        pass
+
 
 
 class ChatWindow(QMainWindow):
@@ -115,34 +115,33 @@ class ChatWindow(QMainWindow):
         self.msg = None
         self.dst = dst
         self.need_send = False
+        self.last_item = 0
 
     def get_messages(self):
         while self.client.inbox:
-            itm = QListWidgetItem()
-            msg = self.client.inbox.pop()
-            itm.setText(f'{msg[0]}: {msg[1]}')
-            self.ui.chatView.insertItem(0, itm)
+            sleep(1)
+            for msg in self.client.inbox:
+                if msg[0] == self.dst:
+                    itm = QListWidgetItem()
+                    itm.setText(f'{msg[0]}: {msg[1]}')
+                    self.ui.chatView.insertItem(self.last_item, itm)
+                    self.last_item += 1
+                    self.client.inbox.remove(msg)
 
     def send(self):
         self.msg = self.ui.msgEdit.toPlainText()
         self.ui.msgEdit.setText('')
         itm = MyQListWidgetItem(self.login)
         itm.setText(f'{self.login}: {self.msg}')
-        self.ui.chatView.insertItem(0, itm)
+        self.ui.chatView.insertItem(self.last_item, itm)
+        self.last_item += 1
         self.need_send = True
 
     def run(self):
         while True:
-            sleep(2)
+            sleep(1)
             if self.need_send:
-                send_message(self.client.client_socket, {
-                    ACTION: 'message',
-                    TIME: time(),
-                    ACCOUNT_NAME: 'tonych',
-                    MESSAGE: 'msg_body',
-                    DESTINATION: 'tonych'
-                })
-                # self.client.send_gui_message(self.client.client_socket, self.login, self.dst, self.msg)
+                self.client.send_gui_message(self.client.client_socket, self.login, self.dst, self.msg)
                 self.need_send = False
 
 
