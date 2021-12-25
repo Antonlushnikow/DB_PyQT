@@ -1,5 +1,6 @@
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
+from sqlalchemy import or_
 
 
 def get_by_id(db: Session, model, id: int):
@@ -21,3 +22,14 @@ def create(db: Session, model, obj_in):
     db.add(db_obj)
     db.commit()
     return db_obj
+
+
+def get_by_filter(db: Session, model, **kwargs):
+    return db.query(model).filter_by(**kwargs).all()
+
+
+def delete_by_filter(db: Session, model, **kwargs):
+    objects = db.query(model).filter_by(**kwargs)
+    objects.delete()
+    db.commit()
+    return

@@ -14,17 +14,23 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(547, 313)
+        MainWindow.resize(547, 323)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+        self.userLbl = QtWidgets.QLabel(self.centralwidget)
+        self.userLbl.setGeometry(QtCore.QRect(20, 10, 200, 14))
+        self.userLbl.setObjectName("userLbl")
+
+
         self.sendBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.sendBtn.setGeometry(QtCore.QRect(470, 260, 61, 31))
+        self.sendBtn.setGeometry(QtCore.QRect(470, 270, 61, 31))
         self.sendBtn.setObjectName("sendBtn")
         self.msgEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.msgEdit.setGeometry(QtCore.QRect(20, 260, 441, 31))
+        self.msgEdit.setGeometry(QtCore.QRect(20, 270, 441, 31))
         self.msgEdit.setObjectName("msgEdit")
         self.chatView = QtWidgets.QListWidget(self.centralwidget)
-        self.chatView.setGeometry(QtCore.QRect(20, 20, 511, 231))
+        self.chatView.setGeometry(QtCore.QRect(20, 30, 511, 231))
         self.chatView.setObjectName("chatView")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)

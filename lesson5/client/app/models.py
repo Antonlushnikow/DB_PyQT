@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
+from datetime import datetime
+
+from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, DateTime
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -42,6 +44,7 @@ class MessageHistory(Base):
     user = Column(String)
     contact = Column(String)
     message = Column(String)
+    time = Column(DateTime, default=datetime.now())
 
     def __init__(self, user, contact, message):
         self.user = user

@@ -16,7 +16,7 @@ if base_dir not in sys.path:
     sys.path.append(base_dir)
 
 
-from db_handlers import add_message, add_contact
+from db_handlers import add_message, add_contact, get_contacts, get_last_messages, del_contact
 from common.utils import get_message, send_message
 from common.constants import DEFAULT_PORT, DEFAULT_HOST, ACTION, TIME, RESPONSE, TYPE, ACCOUNT_NAME, MESSAGE, \
     SENDER, DESTINATION, USER_LIST, CONTACT_LIST, CONTACT_NAME
@@ -54,6 +54,7 @@ class Client(metaclass=ClientVerifier):
         self.connected = False
         self.name = 'guest'
         self.inbox = []
+        self.contacts = []
 
     @log
     def print_message(self, sock, name):
@@ -269,8 +270,14 @@ class Client(metaclass=ClientVerifier):
     def add_contact_(self, user, contact):
         add_contact(user, contact)
 
-    def del_contact(self):
-        pass
+    def get_contacts_(self, user):
+        self.contacts = get_contacts(user)
+
+    def del_contact_(self, contact):
+        del_contact(self.name, contact)
+
+    def get_last_messages_(self, contact):
+        return get_last_messages(self.name, contact)
 
     def launch(self):
         server_name, server_port, client_name = self.parse_arguments()

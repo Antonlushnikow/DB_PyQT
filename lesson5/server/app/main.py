@@ -124,8 +124,7 @@ class Server(metaclass=ServerVerifier):
         elif ACTION in msg and msg[ACTION] == 'message' and TIME in msg and ACCOUNT_NAME in msg:
             if msg[DESTINATION] in client_list.keys():
                 msg_list.append((msg[ACCOUNT_NAME], msg[MESSAGE], msg[DESTINATION]))
-                # print(f'Got message {msg[MESSAGE]}')
-                # LOG.debug(f'Got message {msg[MESSAGE]} from {msg[ACCOUNT_NAME]}')
+                LOG.debug(f'Got message {msg[MESSAGE]} from {msg[ACCOUNT_NAME]}')
             else:
                 LOG.critical(f'{msg[DESTINATION]}\' does not exist')
                 send_message(sock, {RESPONSE: '445'})
@@ -293,9 +292,5 @@ if __name__ == '__main__':
         srv.addr = addr
         srv.port = port
         srv.run()
-
-    # timer = QtCore.QTimer()
-    # timer.timeout.connect(get_online_users)
-    # timer.start(1000)
 
     sys.exit(app.exec_())
