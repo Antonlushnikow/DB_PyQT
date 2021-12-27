@@ -39,11 +39,12 @@ def _decrypt(ciphertext, key):
 
 def send_encrypted_message(sock, msg):
     try:
-        if msg['destination'] == 'tonych':
+        if msg['action'] == 'register':
             print('sdfsdfwefwoehfiowehfoiwehrio!!!')
     except:
         pass
     finally:
+        print(f'send {msg}')
         msg = json.dumps(msg).encode(ENCODING)
         msg = padding_text(msg)
         sock.send(_encrypt(msg, SECRET_KEY))
@@ -54,6 +55,7 @@ def get_encrypted_message(sock):
     msg = _decrypt(msg, SECRET_KEY)
     msg = json.loads(msg.decode(ENCODING))
 
+    print(f'get {msg}')
     if isinstance(msg, dict):
         return msg
     raise ValueError

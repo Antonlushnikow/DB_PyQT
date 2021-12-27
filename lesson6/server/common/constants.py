@@ -16,5 +16,6 @@ CONTACT_LIST = 'contact_list'
 CONTACT_NAME = 'contact_name'
 PASSWD = 'password_hash'
 SECRET_KEY = b'super_secret_key'
+CONTACT = 'contact'
 
 RESPONSE = 'response'

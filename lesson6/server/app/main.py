@@ -20,13 +20,16 @@ if base_dir not in sys.path:
 
 from common.utils import send_encrypted_message, get_encrypted_message
 from common.constants import DEFAULT_PORT, TIME, ACTION, RESPONSE, MAX_CONNECTIONS, USER_LIST, ACCOUNT_NAME, MESSAGE, \
-    SENDER, DESTINATION, CONTACT_NAME, CONTACT_LIST, PASSWD, SECRET_KEY
+    SENDER, DESTINATION, CONTACT_NAME, CONTACT_LIST, PASSWD, SECRET_KEY, ENCODING, CONTACT
 import logging
 
-from app.decorators import log
+from app.decorators import log, login_required
 
 import dis
 import hmac
+import hashlib
+import binascii
+
 
 
 LOG = logging.getLogger('app.server')
@@ -99,8 +102,14 @@ class Server(metaclass=ServerVerifier):
         :param addr:
         :return:
         """
+        print(f'msg - {msg}')
         # Обработка приветственного сообщения
-        if ACTION in msg and msg[ACTION] == 'presence' and TIME in msg and ACCOUNT_NAME in msg and PASSWD in msg:
+        if ACTION in msg and msg[ACTION] == 'presence' and TIME in msg:
+            send_encrypted_message(sock, {RESPONSE: '200'})
+            client_list[sock.getpeername()[0]+str(sock.getpeername()[1])] = sock
+            return
+        # Обработка приветственного сообщения
+        if ACTION in msg and msg[ACTION] == 'login' and TIME in msg and ACCOUNT_NAME in msg and PASSWD in msg:
             LOG.debug(f'{msg[ACCOUNT_NAME]}\'s message is correct')
             if msg[ACCOUNT_NAME] in client_list.keys():
                 LOG.critical(f'{msg[ACCOUNT_NAME]} name is busy')
@@ -110,22 +119,23 @@ class Server(metaclass=ServerVerifier):
                 if self.server_authenticate(sock):
                     user = get_obj_by_login(msg[ACCOUNT_NAME])
                     if user:
-                        if self.check_credentials(user, msg[PASSWD]):
+                        if self.check_credentials(user, self.hash_password(msg[PASSWD])):
                             add_history(user.id)
                             send_encrypted_message(sock, {RESPONSE: '200'})
+                            self.active_clients[sock.getpeername()[0]+str(sock.getpeername()[1])] = (msg[ACCOUNT_NAME],
+                                                                                                datetime.now())
                         else:
                             send_encrypted_message(sock, {RESPONSE: '420'})  # неправильный пароль
                             return
                     else:
                         send_encrypted_message(sock, {RESPONSE: '410'})  # пользователь не существует
                         return
-                    client_list[msg[ACCOUNT_NAME]] = sock
-                    self.active_clients[msg[ACCOUNT_NAME]] = (client_list[msg[ACCOUNT_NAME]].getpeername()[0], datetime.now())
+
             return
         # Обработка сообщения от пользователя
         elif ACTION in msg and msg[ACTION] == 'message' and TIME in msg and ACCOUNT_NAME in msg:
             if msg[DESTINATION] in client_list.keys():
-                msg_list.append((msg[ACCOUNT_NAME], msg[MESSAGE], msg[DESTINATION]))
+                msg_list.append((msg[ACCOUNT_NAME], msg[MESSAGE], msg[DESTINATION], msg[CONTACT]))
                 LOG.debug(f'Got message {msg[MESSAGE]} from {msg[ACCOUNT_NAME]}')
             else:
                 LOG.critical(f'{msg[DESTINATION]}\' does not exist')
@@ -135,7 +145,8 @@ class Server(metaclass=ServerVerifier):
         elif ACTION in msg and msg[ACTION] == 'register' and TIME in msg and ACCOUNT_NAME in msg and PASSWD in msg:
             user = get_obj_by_login(msg[ACCOUNT_NAME])
             if not user:
-                create_user(msg[ACCOUNT_NAME], msg[PASSWD], '')
+                passwd = self.hash_password(msg[PASSWD])
+                create_user(msg[ACCOUNT_NAME], passwd, '')
                 send_encrypted_message(sock, {RESPONSE: '211'})
             else:
                 LOG.critical(f'{msg[ACCOUNT_NAME]} name is busy')
@@ -143,7 +154,8 @@ class Server(metaclass=ServerVerifier):
             return
         # Обработка запроса списка пользователей онлайн
         elif ACTION in msg and msg[ACTION] == 'list' and TIME in msg and ACCOUNT_NAME in msg:
-            send_encrypted_message(sock, {RESPONSE: "202", USER_LIST: list(client_list.keys())})
+            print(f'msg22 - {msg}')
+            send_encrypted_message(sock, {RESPONSE: "202", USER_LIST: self.online_users})
             return
         # Обработка запроса списка контактов
         elif ACTION in msg and msg[ACTION] == 'get_contacts' and TIME in msg and ACCOUNT_NAME in msg:
@@ -187,6 +199,10 @@ class Server(metaclass=ServerVerifier):
             send_encrypted_message(sock, {RESPONSE: '400'})
             return
 
+    def hash_password(self, passwd):
+        dk = hashlib.pbkdf2_hmac('sha256', passwd.encode(ENCODING), b'veryverylongsalt', 100000)
+        return binascii.hexlify(dk).decode(ENCODING)
+
     @log
     def parse_arguments(self):
         """
@@ -205,13 +221,17 @@ class Server(metaclass=ServerVerifier):
         return listen_name
 
     def check_credentials(self, user, passwd):
+        print(user.password_hash, passwd)
         if user.password_hash == passwd:
             return True
         return False
 
     @property
     def online_users(self):
-        return list(self.clients.keys())
+        d = {}
+        for key, value in self.active_clients.items():
+            d[value[0]] = key
+        return d
 
     def server_authenticate(self, sock):
         message = os.urandom(32)
@@ -253,15 +273,16 @@ class Server(metaclass=ServerVerifier):
                 LOG.info(f'Host {addr} has connected')
 
                 # Получение приветственного сообщения
-                self.process_client_message(client_socket, get_encrypted_message(client_socket), [], self.clients, addr[0])
+                a = get_encrypted_message(client_socket)
+                self.process_client_message(client_socket, a, [], self.clients, addr[0])
 
             hosts_who_send, hosts_who_listen = [], []
 
             try:
                 if self.clients:
                     hosts_who_send, hosts_who_listen, _ = select.select(self.clients.values(), self.clients.values(), [], 0)
-                    # print(f'hosts_who_send: {hosts_who_send}')
-                    # print(f'hosts_who_listen: {hosts_who_listen}')
+                    print(f'hosts_who_send: {hosts_who_send}')
+                    print(f'hosts_who_listen: {hosts_who_listen}')
             except OSError:
                 pass
 
@@ -280,7 +301,7 @@ class Server(metaclass=ServerVerifier):
                                 key_host = key
                         if key_host:
                             del self.clients[key_host]
-                            del self.active_clients[key_host]
+                            # del self.active_clients[key_host]
 
             for message in messages:
                 msg = {
@@ -288,9 +309,9 @@ class Server(metaclass=ServerVerifier):
                     SENDER: message[0],
                     TIME: time(),
                     MESSAGE: message[1],
-                    DESTINATION: message[2]
+                    DESTINATION: message[2],
+                    CONTACT: message[3],
                 }
-                print(msg)
                 LOG.info(f'Отправка сообщения пользователю {msg[DESTINATION]}')
 
                 send_encrypted_message(self.clients[msg[DESTINATION]], msg)

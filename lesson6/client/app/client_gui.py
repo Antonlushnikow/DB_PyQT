@@ -29,34 +29,33 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = client_connect.Ui_MainWindow()
         self.ui.setupUi(self)
+        self.client = client
         self.ui.loginBtn.clicked.connect(self.connect)
         self.ui.regBtn.clicked.connect(self.register)
-        self.client = client
+
         self.register = None
-        self.users = None
-        self.login = None
+        self.user_window = None
         self.passwd = None
         self.chat = None
 
     def connect(self):
-        self.login = self.ui.loginEdit.text()
-        self.passwd = self.ui.passwdEdit.text()
-        self.client.name = self.login
-        self.client.passwd = self.passwd
+        self.client.name = self.ui.loginEdit.text()
+        self.client.passwd = self.ui.passwdEdit.text()
 
-        threading.Thread(target=self.client.login, daemon=True).start()
+        self.client.login()
+        # threading.Thread(target=self.client.login, daemon=True).start()
 
         sleep(1)
         if self.client.presence_response == '200':
-            self.users = UsersWindow(self.login, self.client)
+            self.user_window = UsersWindow(self.client)
 
-            self.users.show()
+            self.user_window.show()
             sleep(0.5)
-            self.users.get_online_users()
+            self.user_window.get_online_users()
             self.hide()
         elif self.client.presence_response == '410':
             self.ui.label_err.setText("Login is incorrect")
-        elif self.client.presence_response == '410':
+        elif self.client.presence_response == '420':
             self.ui.label_err.setText("Password is incorrect")
         elif self.client.presence_response == '503':
             self.ui.label_err.setText("Server is not available")
@@ -84,27 +83,24 @@ class RegisterWindow(QMainWindow):
         passwd = self.ui.passwdEdit.text()
         passwd2 = self.ui.passwd2Edit.text()
         if passwd == passwd2:
-            self.client.send_register_msg(login, passwd)
+            self.client.register(login, passwd)
         else:
             self.ui.label_err.setText("Passwords are not matched")
         sleep(1)
         if self.client.presence_response == '211':
-            print('sdfsdf')
             self.close()
         elif self.client.presence_response == '444':
             self.ui.label_err.setText("Login is busy")
 
 
-
-
 class UsersWindow(QMainWindow):
-    def __init__(self, login, client, parent=None):
+    def __init__(self, client, parent=None):
         super(UsersWindow, self).__init__(parent)
         self.ui = client_users.Ui_MainWindow()
         self.ui.setupUi(self)
-        self.login = login
-        self.ui.userLbl.setText(self.login)
         self.client = client
+        self.login = client.name
+        self.ui.userLbl.setText(self.login)
         self.msg = None
         self.address = None
         self.ui.onlineView.itemDoubleClicked.connect(self.open_chat)
@@ -119,7 +115,8 @@ class UsersWindow(QMainWindow):
             self.ui.onlineView.clear()
             self.client.check_online_users()
             sleep(0.5)
-            for user in self.client.online_users:
+            print(self.client.online_users)
+            for user in self.client.online_users.keys():
                 itm = QListWidgetItem()
                 itm.setText(user)
                 self.ui.onlineView.insertItem(0, itm)
@@ -133,7 +130,8 @@ class UsersWindow(QMainWindow):
                 self.ui.contactsView.insertItem(0, itm)
 
     def open_chat(self, item):
-        dst = item.text()
+        dst = self.client.online_users[item.text()]
+        contact = item.text()
 
         if dst in [c.dst for c in self.chats]:
             print('Чат существует')
@@ -143,11 +141,11 @@ class UsersWindow(QMainWindow):
                 if not c.dst:
                     self.chats.remove(c)
         else:
-            chat = ChatWindow(self.login, dst, self.client)
+            chat = ChatWindow(self.login, contact, dst, self.client)
 
             chat.ui.chatView.clear()
 
-            for message in self.client.get_last_messages_(dst):
+            for message in self.client.get_last_messages_(contact):
                 itm = QListWidgetItem()
                 itm.setText(f'{message[0]} {message[1]}: {message[2]}')
                 chat.ui.chatView.insertItem(0, itm)
@@ -182,13 +180,14 @@ class UsersWindow(QMainWindow):
 
 
 class ChatWindow(QMainWindow):
-    def __init__(self, login, dst, client, parent=None):
+    def __init__(self, login, contact, dst, client, parent=None):
         super(ChatWindow, self).__init__(parent)
         self.ui = client_chat.Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.sendBtn.clicked.connect(self.send)
         self.login = login
         self.client = client
+        self.contact = contact
         self.msg = None
         self.dst = dst
         self.need_send = False
@@ -201,10 +200,11 @@ class ChatWindow(QMainWindow):
         event.accept()
 
     def get_messages(self):
+        print(self.client.inbox)
         while self.client.inbox:
             sleep(1)
             for msg in self.client.inbox:
-                if msg[0] == self.dst:
+                if msg[0] == self.contact:
                     itm = QListWidgetItem()
                     itm.setText(f'{datetime.now().strftime("%d-%m-%Y %H:%M:%S")} {msg[0]}: {msg[1]}')
                     self.ui.chatView.insertItem(self.last_item, itm)
@@ -224,7 +224,7 @@ class ChatWindow(QMainWindow):
         while True:
             sleep(1)
             if self.need_send:
-                self.client.send_gui_message(self.client.client_socket, self.login, self.dst, self.msg)
+                self.client.send_gui_message(self.client.client_socket, self.login, self.contact, self.dst, self.msg)
                 self.need_send = False
 
 

@@ -17,3 +17,12 @@ def log(func):
             f'функции {inspect.stack()[1][3]}', stacklevel=2)
         return func(*args, **kwargs)
     return wrapper
+
+
+def login_required(func):
+    def wrapper(*args, **kwargs):
+        if args[0].is_authenticated:
+            return func(*args, **kwargs)
+        return args[0].stop(*args, **kwargs)
+    return wrapper
+
