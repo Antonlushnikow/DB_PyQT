@@ -29,6 +29,7 @@
 <p>Запуск сервера - server\app\main.py</p>
 <p>Запуск клиента - client\app\main.py</p>
 
-1. Добавил шифрование данных через функции get_encrypted_message, send_encrypted_message.
+1. Добавил шифрование данных через функции get_encrypted_message, send_encrypted_message (common\utils.py)
 2. Реализовал регистрацию и аутентификацию на сервере.
 3. Улучшил серверный интерфейс
+4. Добавил декоратор login_required (decorators.py)
