@@ -1,3 +1,6 @@
+"""Создание генератора сессий"""
+
+
 from pathlib import Path
 
 from sqlalchemy.orm import sessionmaker

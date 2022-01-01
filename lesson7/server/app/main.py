@@ -1,7 +1,16 @@
+from fastapi import FastAPI
+from server.app.api.api_v1.api import api_router
+
+app = FastAPI(
+    title='Messenger', openapi_url=f"/127.0.0.1/api/v1/openapi.json"
+)
+
+app.include_router(api_router, prefix="/api/v1")
+
 import os
 import threading
 
-from db_handlers import create_user, add_history, get_obj_by_login, add_contact, delete_contact, get_contacts
+from server.app.db_handlers import create_user, add_history, get_obj_by_login, add_contact, delete_contact, get_contacts
 
 import argparse
 from socket import socket, AF_INET, SOCK_STREAM
@@ -23,8 +32,8 @@ import dis
 import hmac
 import hashlib
 import binascii
-from metaclasses import ServerSocket, ServerVerifier
-from server_gui import ServerGUI
+from server.app.metaclasses import ServerSocket, ServerVerifier
+from server.app.server_gui import ServerGUI
 
 from Crypto.PublicKey import RSA
 

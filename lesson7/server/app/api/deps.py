@@ -1,8 +1,9 @@
 from sqlalchemy.orm import Session
-from session import SessionLocal
+from server.app.session import SessionLocal
 
 
 def get_db() -> Session:
+    """Генерация сессии"""
     db = None
     try:
         db = SessionLocal()

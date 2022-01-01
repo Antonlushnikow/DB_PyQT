@@ -32,7 +32,7 @@ class User(Base):
 
 class UserHistory(Base):
     """
-    Класс для таблицы времени входа пользователей
+    Класс для таблицы истории входа пользователей
     """
     __tablename__ = 'user_history'
     id = Column(Integer, primary_key=True)

@@ -4,11 +4,13 @@ from pydantic import BaseModel
 
 
 class UserBase(BaseModel):
+    """Базовый класс проверки данных"""
     login: str
     info: Optional[str] = None
 
 
 class User(UserBase):
+    """Класс проверки данных модели пользователя"""
     id: int
 
     class Config:
@@ -16,6 +18,7 @@ class User(UserBase):
 
 
 class UserHistory(BaseModel):
+    """Класс проверки данных модели истории входа"""
     user_id: int
     ip_addr: Optional[str] = None
     logon_time: datetime
@@ -25,6 +28,7 @@ class UserHistory(BaseModel):
 
 
 class UserContact(BaseModel):
+    """Класс проверки данных модели контактов пользователя"""
     user_id: int
     contact_id: int
 

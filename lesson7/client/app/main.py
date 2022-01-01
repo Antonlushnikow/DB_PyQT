@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from metaclasses import ClientVerifier
-from client_gui import MainWindow
+from client_gui import StartWindow
 
 from db_handlers import add_message, add_contact, get_contacts, get_last_messages, del_contact
 from client.common.utils import get_message, send_message, send_encrypted_message, get_encrypted_message
@@ -112,21 +112,6 @@ class Client(metaclass=ClientVerifier):
         return presence_msg
 
     @log
-    def create_msg_login(self, account_name):
-        """
-        Возвращает приветственное сообщение
-        :param account_name:
-        :return presence_msg:
-        """
-        login_msg = {
-            ACTION: 'login',
-            TIME: time(),
-            TYPE: 'status',
-            ACCOUNT_NAME: account_name,
-        }
-        return login_msg
-
-    @log
     def create_msg_get_contacts(self, account_name):
         """
         Запрашивает список контактов
@@ -185,20 +170,6 @@ class Client(metaclass=ClientVerifier):
             ACCOUNT_NAME: account_name,
         }
         return list_msg
-    #
-    # @log
-    # def create_msg_exit(self, account_name='guest'):
-    #     """
-    #     Возвращает сообщение об отключении
-    #     :param account_name:
-    #     :return exit_msg:
-    #     """
-    #     exit_msg = {
-    #         ACTION: 'exit',
-    #         TIME: time(),
-    #         ACCOUNT_NAME: account_name
-    #     }
-    #     return exit_msg
 
     @log
     def create_gui_message(self, account_name, contact, dst_name, msg_body):
@@ -348,12 +319,18 @@ class Client(metaclass=ClientVerifier):
             self.check_response(resp)
 
     def login(self):
-        send_encrypted_message(self.client_socket, self.create_msg_login(self.name))
-        # send_encrypted_message(self.client_socket, self.create_msg_login(self.name, self.passwd))
+        msg = {
+            ACTION: 'login',
+            TIME: time(),
+            ACCOUNT_NAME: self.name,
+        }
+        with socket_lock:
+            send_encrypted_message(self.client_socket, msg)
+            resp = get_encrypted_message(self.client_socket)
+
         # если пришел код 212 - запрос хеша пароля
-        msg = get_encrypted_message(self.client_socket)
-        if msg[RESPONSE] == '212':
-            self.hash_password(msg['salt'])
+        if resp[RESPONSE] == '212':
+            self.hash_password(resp['salt'])
             LOG.info('Server has responded with status 212 - Password request')
             print('Инфо: Запрос хеша')
         # message = self.client_socket.recv(32)
@@ -368,7 +345,7 @@ class Client(metaclass=ClientVerifier):
         # if not self.check_response(resp):
         #     sleep(1)
         #     sys.exit(1)
-        if self.check_response(msg[RESPONSE]):
+        if self.check_response(resp[RESPONSE]):
             self.is_authenticated = True
             threading.Thread(target=self.receive, daemon=True).start()
 
@@ -410,9 +387,7 @@ class Client(metaclass=ClientVerifier):
 
 if __name__ == '__main__':
     c = Client()
-    threading.Thread(target=c.launch, daemon=True).start()
     app = QApplication(sys.argv)
-    window = MainWindow(c)
+    window = StartWindow(c)
     window.show()
-
     sys.exit(app.exec_())

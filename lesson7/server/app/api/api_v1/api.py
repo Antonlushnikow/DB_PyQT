@@ -1,5 +1,7 @@
+"""Роутер FastAPI"""
+
 from fastapi import APIRouter
-from app.api.api_v1.endpoints import users
+from server.app.api.api_v1.endpoints import users
 
 api_router = APIRouter()
 

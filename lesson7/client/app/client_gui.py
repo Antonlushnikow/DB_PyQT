@@ -2,20 +2,12 @@ import sys
 import threading
 from datetime import datetime
 from pathlib import Path
-from time import sleep, time
+from time import sleep
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QListWidgetItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QListWidgetItem
 from PyQt5 import QtCore
 
-import client_connect
-import client_chat
-import client_users
-import client_register
-
-base_dir = str(Path(__file__).parent.parent.resolve())
-print(base_dir)
-if base_dir not in sys.path:
-    sys.path.append(base_dir)
+from client.app.ui import client_register, client_connect, client_users, client_chat, client_start
 
 
 class MyQListWidgetItem(QListWidgetItem):
@@ -24,8 +16,28 @@ class MyQListWidgetItem(QListWidgetItem):
         self.name = name
 
 
-class MainWindow(QMainWindow):
+class StartWindow(QMainWindow):
     def __init__(self, client):
+        QMainWindow.__init__(self)
+        self.ui = client_start.Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.main_window = None
+        self.client = client
+        self.ui.connectBtn.clicked.connect(self.connect)
+
+    def connect(self):
+        try:
+            threading.Thread(target=self.client.launch, daemon=True).start()
+        except:
+            print('Нет соединения с сервером')
+        else:
+            self.main_window = MainWindow(self.client)
+            self.main_window.show()
+            self.hide()
+
+
+class MainWindow(QMainWindow):
+    def __init__(self, client: object) -> object:
         QMainWindow.__init__(self)
         self.ui = client_connect.Ui_MainWindow()
         self.ui.setupUi(self)

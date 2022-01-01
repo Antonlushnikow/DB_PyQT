@@ -1,9 +1,7 @@
 import json
-
 from Crypto.Cipher import AES
 
 from server.common.constants import ENCODING, MAX_PACKAGE_LENGTH, SECRET_KEY
-# from decorators import log
 
 
 def padding_text(text):
@@ -38,39 +36,32 @@ def _decrypt(ciphertext, key):
 
 
 def send_encrypted_message(sock, msg):
-    try:
-        if msg['action'] == 'register':
-            print('sdfsdfwefwoehfiowehfoiwehrio!!!')
-    except:
-        pass
-    finally:
-        print(f'send {msg}')
-        msg = json.dumps(msg).encode(ENCODING)
-        msg = padding_text(msg)
-        sock.send(_encrypt(msg, SECRET_KEY))
+    """Отправка зашифрованного сообщения"""
+    msg = json.dumps(msg).encode(ENCODING)
+    msg = padding_text(msg)
+    sock.send(_encrypt(msg, SECRET_KEY))
 
 
 def get_encrypted_message(sock):
+    """Получение зашифрованного сообщения"""
     msg = sock.recv(MAX_PACKAGE_LENGTH)
     msg = _decrypt(msg, SECRET_KEY)
     msg = json.loads(msg.decode(ENCODING))
 
-    print(f'get {msg}')
     if isinstance(msg, dict):
         return msg
     raise ValueError
 
-
-# @log
-def get_message(sock):
-    msg = json.loads(sock.recv(MAX_PACKAGE_LENGTH).decode(ENCODING))
-
-    if isinstance(msg, dict):
-        return msg
-    raise ValueError
-
-
-# @log
-def send_message(sock, msg):
-    msg = json.dumps(msg)
-    sock.send(msg.encode(ENCODING))
+# # @log
+# def get_message(sock):
+#     msg = json.loads(sock.recv(MAX_PACKAGE_LENGTH).decode(ENCODING))
+#
+#     if isinstance(msg, dict):
+#         return msg
+#     raise ValueError
+#
+#
+# # @log
+# def send_message(sock, msg):
+#     msg = json.dumps(msg)
+#     sock.send(msg.encode(ENCODING))

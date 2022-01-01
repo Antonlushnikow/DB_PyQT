@@ -1,4 +1,8 @@
+import logging
 from server.common.constants import DEFAULT_PORT
+
+
+LOG = logging.getLogger('app.server')
 
 
 class SocketDescriptor:

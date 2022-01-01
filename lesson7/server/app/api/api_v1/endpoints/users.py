@@ -1,10 +1,13 @@
+"""Endpoint Users"""
+
+
 from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.models import User
-from app.api import deps
-from app import crud, schemas
+from server.app.models import User
+from server.app.api import deps
+from server.app import crud, schemas
 
 router = APIRouter()
 
