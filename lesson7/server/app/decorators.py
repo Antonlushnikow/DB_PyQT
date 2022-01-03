@@ -1,12 +1,13 @@
 import inspect
 import logging
-
+from functools import wraps
 
 LOG = logging.getLogger('app.server')
 
 
 def log(func):
     """Декоратор логирования"""
+    @wraps(func)
     def wrapper(*args, **kwargs):
         LOG.debug(
             f'Вызов функции {func.__name__} с параметрами {args}, {kwargs}. '

@@ -1,7 +1,9 @@
 import threading
+from time import sleep
+
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QMainWindow
-from server.app import server_form
+from app import server_form
 
 
 class ServerGUI(QMainWindow):
@@ -19,15 +21,13 @@ class ServerGUI(QMainWindow):
         """Возвращает список активных пользователей"""
         list_users = self.server.active_clients
         list_ = QStandardItemModel()
-        list_.setHorizontalHeaderLabels(['Имя Клиента', 'IP Адрес', 'Время подключения'])
+        list_.setHorizontalHeaderLabels(['Имя Клиента', 'IP Адрес'])
         for key, value in list_users.items():
-            user = QStandardItem(key)
+            user = QStandardItem(value)
             user.setEditable(False)
-            ip = QStandardItem(value[0])
+            ip = QStandardItem(f'{key[:-5]}:{key[-5:]}')
             ip.setEditable(False)
-            time = QStandardItem(str(value[1].replace(microsecond=0)))
-            time.setEditable(False)
-            list_.appendRow([user, ip, time])
+            list_.appendRow([user, ip])
         return list_
 
     def refresh_online_users(self):
@@ -36,10 +36,13 @@ class ServerGUI(QMainWindow):
 
     def start(self):
         """Запускает поток сервера с установленными параметрами"""
-        self.server.addr = self.ui.lineEdit.text()
-        self.server.port = self.ui.lineEdit_2.text()
-
-        self.ui.label_4.setText('Connected')
-        self.ui.connectButton.setDisabled(True)
-
-        threading.Thread(target=self.server.run, daemon=True).start()
+        try:
+            self.server.addr = self.ui.lineEdit.text()
+            self.server.port = int(self.ui.lineEdit_2.text())
+        except:
+            self.ui.label_4.setText('Type Error')
+        else:
+            self.ui.label_4.setText('Connected')
+            self.ui.connectButton.setDisabled(True)
+            sleep(1)
+            threading.Thread(target=self.server.run, daemon=True).start()

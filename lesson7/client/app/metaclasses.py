@@ -1,6 +1,7 @@
 import dis
 from socket import socket
 
+
 class ClientVerifier(type):
     """Метакласс для проверки клиента"""
     def __init__(cls, clsname, bases, clsdict):

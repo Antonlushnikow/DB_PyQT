@@ -1,6 +1,6 @@
 from socket import socket, AF_INET, SOCK_STREAM
 import dis
-from server.app.descriptors import SocketDescriptor
+from app.descriptors import SocketDescriptor
 
 
 class ServerSocket(socket):

@@ -16,6 +16,7 @@
     <script src="_static/translations.js"></script>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
+    <link rel="prev" title="Welcome to Messenger’s documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -34,14 +35,100 @@
             
   <section id="server-app">
 <h1>Server app<a class="headerlink" href="#server-app" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Сервер мессенджера. Запускается с графической оболочкой</p>
 <p>Пример запуска:</p>
-<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">server\app\main.py</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">main.py</span></code></p>
 <section id="main-py">
 <h2>main.py<a class="headerlink" href="#main-py" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Запускаемый модуль</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="server.app.main.Server">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.app.main.</span></span><span class="sig-name descname"><span class="pre">Server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7777</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.app.main.Server" title="Ссылка на это определение">¶</a></dt>
+<dt class="sig sig-object py" id="server.main.Server">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.main.</span></span><span class="sig-name descname"><span class="pre">Server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7777</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.main.Server" title="Ссылка на это определение">¶</a></dt>
 <dd><p>Основной класс сервера</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="server.main.Server.check_password">
+<span class="sig-name descname"><span class="pre">check_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.main.Server.check_password" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверка пароля пользователя. Отправляет клиенту соль,
+получает ответ, сравнивает хеши</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="server.main.Server.create_password_hash">
+<span class="sig-name descname"><span class="pre">create_password_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sock</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.main.Server.create_password_hash" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отправляет пользователю соль
+Принимает получившийся хеш пароля
+Возвращает соль и хеш</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="server.main.Server.online_users">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">online_users</span></span><a class="headerlink" href="#server.main.Server.online_users" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возврашает словарь с пользователями онлайн</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="server.main.Server.process_client_message">
+<span class="sig-name descname"><span class="pre">process_client_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.main.Server.process_client_message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод проверяет тип входящего сообщения, проверяет корректность сообщения
+и отправляет соответствующий ответ клиенту</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="server.main.Server.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.main.Server.run" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запуск сервера</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="models-py">
+<h2>models.py<a class="headerlink" href="#models-py" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Описание базы данных</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="server.app.models.User">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.app.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">login</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password_hash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.app.models.User" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс для таблицы пользователей</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="server.app.models.UserContact">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.app.models.</span></span><span class="sig-name descname"><span class="pre">UserContact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.app.models.UserContact" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс для таблицы контактов пользователей</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="server.app.models.UserHistory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.app.models.</span></span><span class="sig-name descname"><span class="pre">UserHistory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip_addr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logon_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.datetime(2022,</span> <span class="pre">1,</span> <span class="pre">3,</span> <span class="pre">14,</span> <span class="pre">40,</span> <span class="pre">7,</span> <span class="pre">506104)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.app.models.UserHistory" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс для таблицы истории входа пользователей</p>
+</dd></dl>
+
+</section>
+<section id="server-gui-py">
+<h2>server_gui.py<a class="headerlink" href="#server-gui-py" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Графический интерфейс сервера. Обработчик нажатия кнопок</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="server.app.server_gui.ServerGUI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">server.app.server_gui.</span></span><span class="sig-name descname"><span class="pre">ServerGUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.app.server_gui.ServerGUI" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс окна GUI сервера</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="server.app.server_gui.ServerGUI.refresh_online_users">
+<span class="sig-name descname"><span class="pre">refresh_online_users</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.app.server_gui.ServerGUI.refresh_online_users" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обновляет значения элементов таблицы подключенных пользователей</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="server.app.server_gui.ServerGUI.set_clients_table">
+<span class="sig-name descname"><span class="pre">set_clients_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.app.server_gui.ServerGUI.set_clients_table" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает список активных пользователей</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="server.app.server_gui.ServerGUI.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.app.server_gui.ServerGUI.start" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запускает поток сервера с установленными параметрами</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -64,11 +151,21 @@
 
 
 <h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Server app</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-py">main.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#models-py">models.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#server-gui-py">server_gui.py</a></li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="предыдущая глава">Welcome to Messenger’s documentation!</a></li>
   </ul></li>
 </ul>
 </div>

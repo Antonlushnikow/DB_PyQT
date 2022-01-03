@@ -5,9 +5,9 @@ from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from server.app.models import User
-from server.app.api import deps
-from server.app import crud, schemas
+from app.models import User
+from app.api import deps
+from app import crud, schemas
 
 router = APIRouter()
 
@@ -16,6 +16,7 @@ router = APIRouter()
 def read_users(
         db: Session = Depends(deps.get_db)
 ):
+    """Вывод пользователей"""
     data = crud.get_multi(db=db, model=User)
     return data
 
@@ -25,6 +26,7 @@ def create_user(
         user_in: schemas.UserBase,
         db: Session = Depends(deps.get_db)
 ):
+    """Создание пользователя"""
     user = crud.get_by_login(db=db, model=User, login=user_in.login)
 
     if user:

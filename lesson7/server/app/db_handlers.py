@@ -1,13 +1,13 @@
-from server.app.api import deps
-from server.app import crud
-from server.app.models import User, UserHistory, UserContact
+from app.api import deps
+from app import crud
+from app.models import User, UserHistory, UserContact
 
 
-def create_user(login, passwd, info):
+def create_user(login, passwd, salt, info):
     """Создание нового пользователя"""
     obj = crud.create(db=next(deps.get_db()),
                       model=User,
-                      obj_in={'login': login, 'info': info, 'password_hash': passwd}
+                      obj_in={'login': login, 'info': info, 'salt': salt, 'password_hash': passwd}
                       )
     return obj
 

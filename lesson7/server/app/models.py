@@ -13,18 +13,20 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     login = Column(String, unique=True)
     info = Column(String, nullable=True)
+    salt = Column(String)
     password_hash = Column(String)
     history = relationship('UserHistory', cascade='all, delete-orphan')
 
     contacts = relationship('UserContact', foreign_keys='UserContact.user_id')
 
-    def __init__(self, login, password_hash, info=''):
+    def __init__(self, login, salt, password_hash, info=''):
         self.login = login
+        self.salt = salt
         self.info = info
         self.password_hash = password_hash
 
     def __repr__(self):
-        return f'client {self.name} ({self.ipaddr})'
+        return f'client {self.name}'
 
     def to_json(self):
         return {'id': self.id}

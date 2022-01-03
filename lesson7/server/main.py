@@ -1,43 +1,30 @@
+import select
+import os
+import logging
+import sys
 from fastapi import FastAPI
-from server.app.api.api_v1.api import api_router
+from base64 import b64encode
+from socket import AF_INET, SOCK_STREAM
+from time import time
+from PyQt5.QtWidgets import QApplication
+from common.utils import send_encrypted_message, get_encrypted_message
+from common.constants import DEFAULT_PORT, TIME, ACTION, RESPONSE, \
+    MAX_CONNECTIONS, USER_LIST, ACCOUNT_NAME, MESSAGE, SENDER, DESTINATION, \
+    CONTACT_NAME, CONTACT_LIST, PASSWD, ENCODING, CONTACT, SALT
+from app.decorators import log
+from app.metaclasses import ServerSocket, ServerVerifier
+from app.server_gui import ServerGUI
+from app.api.api_v1.api import api_router
+from app.db_handlers import create_user, add_history, get_obj_by_login, \
+    add_contact, delete_contact, get_contacts
+from project_logs.config import server_log_config
 
-app = FastAPI(
-    title='Messenger', openapi_url=f"/127.0.0.1/api/v1/openapi.json"
-)
 
+app = FastAPI(title='Messenger', openapi_url='/127.0.0.1/api/v1/openapi.json')
 app.include_router(api_router, prefix="/api/v1")
 
-import os
-import threading
 
-from server.app.db_handlers import create_user, add_history, get_obj_by_login, add_contact, delete_contact, get_contacts
-
-import argparse
-from socket import socket, AF_INET, SOCK_STREAM
-import sys
-from time import time
-
-from PyQt5.QtWidgets import QApplication
-import select
-
-from server.common.utils import send_encrypted_message, get_encrypted_message
-from server.common.constants import DEFAULT_PORT, TIME, ACTION, RESPONSE, MAX_CONNECTIONS, USER_LIST, ACCOUNT_NAME, MESSAGE, \
-    SENDER, DESTINATION, CONTACT_NAME, CONTACT_LIST, PASSWD, ENCODING, CONTACT
-import logging
-
-from server.app.decorators import log
-
-
-import dis
-import hmac
-import hashlib
-import binascii
-from server.app.metaclasses import ServerSocket, ServerVerifier
-from server.app.server_gui import ServerGUI
-
-from Crypto.PublicKey import RSA
-
-
+SECRET_KEY = b'super_secret_key'
 LOG = logging.getLogger('app.server')
 
 
@@ -51,9 +38,6 @@ class Server(metaclass=ServerVerifier):
         self.server_socket = ServerSocket(AF_INET, SOCK_STREAM)
         self.client_sockets = {}
         self.active_clients = {}
-        self.secret_keys = {}
-        keys = RSA.generate(2048, os.urandom)
-        self.public_key = keys.public_key().export_key()
 
     @log
     def process_client_message(self, sock, msg, msg_list):
@@ -64,32 +48,43 @@ class Server(metaclass=ServerVerifier):
         resp = {RESPONSE: ''}
         # Обработка приветственного сообщения
         if ACTION in msg and msg[ACTION] == 'presence' and TIME in msg:
-            self.generate_secret_key(sock)
             send_encrypted_message(sock, {RESPONSE: '200'})
             self.client_sockets[sock.getpeername()[0]+str(sock.getpeername()[1])] = sock
+            return
+        # Обработка сообщения о регистрации
+        elif ACTION in msg and msg[ACTION] == 'register' and TIME in msg and ACCOUNT_NAME in msg:
+            user = get_obj_by_login(msg[ACCOUNT_NAME])
+            if not user:
+                # Пользователь не существует
+                passwd, salt = self.create_password_hash(sock)
+                create_user(msg[ACCOUNT_NAME], passwd, salt, '')
+                send_encrypted_message(sock, {RESPONSE: '211'})
+            else:
+                # Пользователь существует
+                LOG.critical(f'{msg[ACCOUNT_NAME]} name is busy')
+                send_encrypted_message(sock, {RESPONSE: '444'})
             return
         # Обработка авторизации
         if ACTION in msg and msg[ACTION] == 'login' and TIME in msg and ACCOUNT_NAME in msg:
             LOG.debug(f'{msg[ACCOUNT_NAME]}\'s message is correct')
-            if msg[ACCOUNT_NAME] in self.active_clients.values():  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if msg[ACCOUNT_NAME] in self.active_clients.values():
                 LOG.critical(f'{msg[ACCOUNT_NAME]} name is busy')
                 resp = {RESPONSE: '444'}
             else:
                 # проверка существования пользователя
-                if self.server_authenticate(sock):
-                    user = get_obj_by_login(msg[ACCOUNT_NAME])
-                    if user:
-                        if self.check_credentials(user, self.check_password(user)):
-                            # пароль верный
-                            add_history(user.id)
-                            resp = {RESPONSE: '200'}
-                            self.active_clients[sock.getpeername()[0]+str(sock.getpeername()[1])] = msg[ACCOUNT_NAME]
-                        else:
-                            # неправильный пароль
-                            resp = {RESPONSE: '420'}
+                user = get_obj_by_login(msg[ACCOUNT_NAME])
+                if user:
+                    if self.check_password(sock, user):
+                        # пароль верный
+                        add_history(user.id)
+                        resp = {RESPONSE: '200'}
+                        self.active_clients[sock.getpeername()[0]+str(sock.getpeername()[1])] = msg[ACCOUNT_NAME]
                     else:
-                        # пользователь не существует
-                        resp = {RESPONSE: '410'}
+                        # неправильный пароль
+                        resp = {RESPONSE: '420'}
+                else:
+                    # пользователь не существует
+                    resp = {RESPONSE: '410'}
             send_encrypted_message(sock, resp)
             return
         # Обработка сообщения от пользователя
@@ -101,30 +96,19 @@ class Server(metaclass=ServerVerifier):
                 LOG.critical(f'{msg[DESTINATION]}\' does not exist')
                 send_encrypted_message(sock, {RESPONSE: '445'})
             return
-        # Обработка сообщения о регистрации
-        elif ACTION in msg and msg[ACTION] == 'register' and TIME in msg and ACCOUNT_NAME in msg and PASSWD in msg:
-            user = get_obj_by_login(msg[ACCOUNT_NAME])
-            if not user:
-                passwd = self.check_password(msg[PASSWD])
-                create_user(msg[ACCOUNT_NAME], passwd, '')
-                send_encrypted_message(sock, {RESPONSE: '211'})
-            else:
-                LOG.critical(f'{msg[ACCOUNT_NAME]} name is busy')
-                send_encrypted_message(sock, {RESPONSE: '444'})
-            return
         # Обработка запроса списка пользователей онлайн
         elif ACTION in msg and msg[ACTION] == 'list' and TIME in msg and ACCOUNT_NAME in msg:
             print(f'msg22 - {msg}')
-            send_encrypted_message(sock, {RESPONSE: "202", USER_LIST: self.online_users})
+            send_encrypted_message(sock, {RESPONSE: '202', USER_LIST: self.online_users})
             return
         # Обработка запроса списка контактов
-        elif ACTION in msg and msg[ACTION] == 'get_contacts' and TIME in msg and ACCOUNT_NAME in msg:
+        elif ACTION in msg and msg[ACTION] == 'get_contacts' and ACCOUNT_NAME in msg:
             user_id = get_obj_by_login(msg[ACCOUNT_NAME]).id
             contacts = list(contact.login for contact in get_contacts(user_id)) or []
-            send_encrypted_message(sock, {RESPONSE: '202', CONTACT_LIST: contacts})
+            send_encrypted_message(sock, {RESPONSE: '203', CONTACT_LIST: contacts})
             return
         # Обработка запроса добавления в контакты
-        elif ACTION in msg and msg[ACTION] == 'add_contact' and TIME in msg and ACCOUNT_NAME in msg and CONTACT_NAME in msg:
+        elif ACTION in msg and msg[ACTION] == 'add_contact' and ACCOUNT_NAME in msg and CONTACT_NAME in msg:
             # запись контакта в БД
             try:
                 user_id = get_obj_by_login(msg[ACCOUNT_NAME]).id
@@ -133,11 +117,12 @@ class Server(metaclass=ServerVerifier):
                 send_encrypted_message(sock, {RESPONSE: "406", MESSAGE: "Ошибка"})
             else:
                 add_contact(user_id, contact_id)
-                send_encrypted_message(sock, {RESPONSE: "206", MESSAGE: "Успешно"})
+                contacts = list(contact.login for contact in get_contacts(user_id)) or []
+                send_encrypted_message(sock, {RESPONSE: "206", MESSAGE: "Успешно", CONTACT_LIST: contacts})
 
             return
         # Обработка запроса удаления из контактов
-        elif ACTION in msg and msg[ACTION] == 'del_contact' and TIME in msg and ACCOUNT_NAME in msg and CONTACT_NAME in msg:
+        elif ACTION in msg and msg[ACTION] == 'del_contact' and ACCOUNT_NAME in msg and CONTACT_NAME in msg:
             try:
                 user_id = get_obj_by_login(msg[ACCOUNT_NAME]).id
                 contact_id = get_obj_by_login(msg[CONTACT_NAME]).id
@@ -145,58 +130,43 @@ class Server(metaclass=ServerVerifier):
                 send_encrypted_message(sock, {RESPONSE: "406", MESSAGE: "Ошибка"})
             else:
                 delete_contact(user_id, contact_id)
-                send_encrypted_message(sock, {RESPONSE: "206", MESSAGE: "Успешно"})
+                contacts = list(contact.login for contact in get_contacts(user_id)) or []
+                send_encrypted_message(sock, {RESPONSE: "207", MESSAGE: "Успешно", CONTACT_LIST: contacts})
             return
-        # Обработка сообщения о выходе пользователя
-        # elif ACTION in msg and msg[ACTION] == 'exit' and TIME in msg and ACCOUNT_NAME in msg:
-        #     if msg[ACCOUNT_NAME] in self.clients.keys():
-        #         del self.clients[msg[ACCOUNT_NAME]]
-        #         LOG.info(f'{msg[ACCOUNT_NAME]} has disconnected')
-        #     return
+        # Получено некорректное сообщение
         else:
             LOG.critical(f'{msg[ACCOUNT_NAME]}\'s message is incorrect')
             LOG.debug(f'{msg}')
             send_encrypted_message(sock, {RESPONSE: '400'})
             return
 
-    def generate_secret_key(self, sock):
-        r = os.urandom(32)
+    @log
+    def create_password_hash(self, sock):
+        """
+        Отправляет пользователю соль
+        Принимает получившийся хеш пароля
+        Возвращает соль и хеш
+        """
+        random_string = os.urandom(32)
+        salt = b64encode(random_string).decode(ENCODING)
+        msg = {SALT: salt}
 
-        print(sock.getpeername()[0]+str(sock.getpeername()[1]))
+        send_encrypted_message(sock, msg)
+        resp = get_encrypted_message(sock)
+
+        passwd_hash = resp[PASSWD]
+
+        return passwd_hash, salt
 
     def check_password(self, sock, user):
         """
-        Проверка пароля пользователя. Отправляет случайную строку клиенту,
+        Проверка пароля пользователя. Отправляет клиенту соль,
         получает ответ, сравнивает хеши
         """
-        random_string = os.urandom(32)
-        passwd = hashlib.pbkdf2_hmac('sha256', user.passwd_hash.encode(ENCODING), random_string, 100000)
-        reg_msg = {RESPONSE: '212', 'salt': random_string}
-        send_encrypted_message(sock, reg_msg)
+        login_msg = {RESPONSE: '212', SALT: user.salt}
+        send_encrypted_message(sock, login_msg)
         ans = get_encrypted_message(sock)
-        if ans[PASSWD] == passwd:
-            print('OK')
-        else:
-            print('Not OK')
-
-    @log
-    def parse_arguments(self):
-        """
-        Метод парсит аргументы запуска сервера и проверяет их корректность.
-        Обновляет свойства адрес и порт.
-        """
-        parser = argparse.ArgumentParser()
-        parser.add_argument('-a', '--addr', default=self.addr)
-        parser.add_argument('-p', '--port', type=int, default=self.port)
-        namespace = parser.parse_args(sys.argv[1:])
-        self.addr = namespace.addr
-        self.port = namespace.port
-    #
-    # def check_credentials(self, user, passwd):
-    #     print(user.password_hash, passwd)
-    #     if user.password_hash == passwd:
-    #         return True
-    #     return False
+        return ans[PASSWD] == user.password_hash
 
     @property
     def online_users(self):
@@ -205,23 +175,13 @@ class Server(metaclass=ServerVerifier):
         """
         online_dict = {}
         for key, value in self.active_clients.items():
-            online_dict[value[0]] = key
+            online_dict[value] = key
         return online_dict
 
-    # def server_authenticate(self, sock):
-    #     message = os.urandom(32)
-    #     sock.send(message)
-    #
-    #     hash = hmac.new(SECRET_KEY, message, 'sha256')
-    #     digest = hash.digest()
-    #
-    #     response = sock.recv(len(digest))
-    #     return hmac.compare_digest(digest, response)
-
+    @log
     def run(self):
-        """Метод запуска сервера"""
+        """Запуск сервера"""
         messages = []
-        self.parse_arguments()
 
         try:
             self.server_socket.bind((self.addr, self.port))
@@ -253,8 +213,8 @@ class Server(metaclass=ServerVerifier):
             try:
                 if self.client_sockets:
                     hosts_who_send, hosts_who_listen, _ = select.select(self.client_sockets.values(), self.client_sockets.values(), [], 0)
-                    print(f'hosts_who_send: {hosts_who_send}')
-                    print(f'hosts_who_listen: {hosts_who_listen}')
+                    print(f'{self.active_clients}')
+                    # print(f'hosts_who_listen: {hosts_who_listen}')
             except OSError:
                 pass
 
@@ -273,7 +233,8 @@ class Server(metaclass=ServerVerifier):
                                 key_host = key
                         if key_host:
                             del self.client_sockets[key_host]
-                            # del self.active_clients[key_host]
+                            if key_host in self.active_clients.keys():
+                                del self.active_clients[key_host]
 
             for message in messages:
                 msg = {

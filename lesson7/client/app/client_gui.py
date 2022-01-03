@@ -1,22 +1,23 @@
 import sys
 import threading
 from datetime import datetime
-from pathlib import Path
 from time import sleep
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QListWidgetItem
 from PyQt5 import QtCore
 
-from client.app.ui import client_register, client_connect, client_users, client_chat, client_start
+from app.ui import client_register, client_connect, client_users, client_chat, client_start
 
 
 class MyQListWidgetItem(QListWidgetItem):
+    """Класс для сообщений в чате"""
     def __init__(self, name):
         super().__init__()
         self.name = name
 
 
 class StartWindow(QMainWindow):
+    """Класс стартового окна"""
     def __init__(self, client):
         QMainWindow.__init__(self)
         self.ui = client_start.Ui_MainWindow()
@@ -26,6 +27,7 @@ class StartWindow(QMainWindow):
         self.ui.connectBtn.clicked.connect(self.connect)
 
     def connect(self):
+        """Обработчик кнопки подключеня"""
         try:
             threading.Thread(target=self.client.launch, daemon=True).start()
         except:
@@ -37,13 +39,14 @@ class StartWindow(QMainWindow):
 
 
 class MainWindow(QMainWindow):
+    """Класс окна подключения"""
     def __init__(self, client: object) -> object:
         QMainWindow.__init__(self)
         self.ui = client_connect.Ui_MainWindow()
         self.ui.setupUi(self)
         self.client = client
         self.ui.loginBtn.clicked.connect(self.connect)
-        self.ui.regBtn.clicked.connect(self.register)
+        self.ui.regBtn.clicked.connect(self.register_)
 
         self.register = None
         self.user_window = None
@@ -51,6 +54,7 @@ class MainWindow(QMainWindow):
         self.chat = None
 
     def connect(self):
+        """Обратотчик кнопки авторизации"""
         self.client.name = self.ui.loginEdit.text()
         self.client.passwd = self.ui.passwdEdit.text()
 
@@ -74,12 +78,14 @@ class MainWindow(QMainWindow):
         else:
             self.ui.label_err.setText("Server Error")
 
-    def register(self):
+    def register_(self):
+        """Обработчик кнопки регистрации"""
         self.register = RegisterWindow(self.client)
         self.register.show()
 
 
 class RegisterWindow(QMainWindow):
+    """Класс окна регистрации"""
     def __init__(self, client, parent=None):
         super(RegisterWindow, self).__init__(parent)
         self.ui = client_register.Ui_MainWindow()
@@ -91,6 +97,7 @@ class RegisterWindow(QMainWindow):
         self.ui.regBtn.clicked.connect(self.register)
 
     def register(self):
+        """Обработчик кнопки зарегистрировать"""
         login = self.ui.loginEdit.text()
         passwd = self.ui.passwdEdit.text()
         passwd2 = self.ui.passwd2Edit.text()
@@ -106,6 +113,7 @@ class RegisterWindow(QMainWindow):
 
 
 class UsersWindow(QMainWindow):
+    """Класс окна пользователей"""
     def __init__(self, client, parent=None):
         super(UsersWindow, self).__init__(parent)
         self.ui = client_users.Ui_MainWindow()
@@ -115,6 +123,7 @@ class UsersWindow(QMainWindow):
         self.ui.userLbl.setText(self.login)
         self.msg = None
         self.address = None
+        self.dst = None
         self.ui.onlineView.itemDoubleClicked.connect(self.open_chat)
         self.ui.contactsView.itemDoubleClicked.connect(self.open_chat)
         self.ui.refreshBtn.clicked.connect(self.get_online_users)
@@ -123,6 +132,7 @@ class UsersWindow(QMainWindow):
         self.chats = []
 
     def get_online_users(self):
+        """Обработчик кнопки Обновить"""
         if self.client.connected:
             self.ui.onlineView.clear()
             self.client.check_online_users()
@@ -142,6 +152,7 @@ class UsersWindow(QMainWindow):
                 self.ui.contactsView.insertItem(0, itm)
 
     def open_chat(self, item):
+        """Обработчик открытия чата"""
         dst = self.client.online_users[item.text()]
         contact = item.text()
 
@@ -163,35 +174,37 @@ class UsersWindow(QMainWindow):
                 chat.ui.chatView.insertItem(0, itm)
                 chat.last_item += 1
 
-            sender = threading.Thread(target=chat.run)
-            sender.daemon = True
-            sender.start()
-            self.timer = QtCore.QTimer()
-            self.timer.timeout.connect(chat.get_messages)
-            self.timer.start(1000)
+            timer = QtCore.QTimer()
+            timer.timeout.connect(chat.get_messages)
+            timer.start(1000)
 
             self.chats.append(chat)
 
             chat.show()
 
     def add_contact(self):
+        """Обработчик кнопки Добавить в контакты"""
         try:
             self.dst = self.ui.onlineView.currentItem().text()
-            self.client.add_contact_(self.login, self.dst)
+            self.client.add_contact_(self.dst)
+            sleep(1)
             self.get_online_users()
         except:
             pass
 
     def del_contact(self):
+        """Обработчик кнопки Удалить контакт"""
         try:
             self.dst = self.ui.contactsView.currentItem().text()
             self.client.del_contact_(self.dst)
+            sleep(1)
             self.get_online_users()
         except:
             pass
 
 
 class ChatWindow(QMainWindow):
+    """Класс окна чата"""
     def __init__(self, login, contact, dst, client, parent=None):
         super(ChatWindow, self).__init__(parent)
         self.ui = client_chat.Ui_MainWindow()
@@ -202,16 +215,20 @@ class ChatWindow(QMainWindow):
         self.contact = contact
         self.msg = None
         self.dst = dst
-        self.need_send = False
         self.last_item = 0
         self.ui.userLbl.setText(f'{login} -> {dst}')
 
     def closeEvent(self, event):
+        """Обработчик закрытия чата"""
         print('Чат закрыт')
         self.dst = ''
         event.accept()
 
     def get_messages(self):
+        """
+        Получение последних сообщений
+        при открытии окна
+        """
         print(self.client.inbox)
         while self.client.inbox:
             sleep(1)
@@ -224,20 +241,14 @@ class ChatWindow(QMainWindow):
                     self.client.inbox.remove(msg)
 
     def send(self):
+        """Обработчик кнопки Отправить"""
         self.msg = self.ui.msgEdit.toPlainText()
         self.ui.msgEdit.setText('')
         itm = MyQListWidgetItem(self.login)
         itm.setText(f'{datetime.now().strftime("%d-%m-%Y %H:%M:%S")} {self.login}: {self.msg}')
         self.ui.chatView.insertItem(self.last_item, itm)
         self.last_item += 1
-        self.need_send = True
-
-    def run(self):
-        while True:
-            sleep(1)
-            if self.need_send:
-                self.client.send_gui_message(self.client.client_socket, self.login, self.contact, self.dst, self.msg)
-                self.need_send = False
+        self.client.send_message(self.client.client_socket, self.login, self.contact, self.dst, self.msg)
 
 
 if __name__ == '__main__':

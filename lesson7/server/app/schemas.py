@@ -7,6 +7,8 @@ class UserBase(BaseModel):
     """Базовый класс проверки данных"""
     login: str
     info: Optional[str] = None
+    salt: str
+    password_hash: str
 
 
 class User(UserBase):
@@ -21,7 +23,7 @@ class UserHistory(BaseModel):
     """Класс проверки данных модели истории входа"""
     user_id: int
     ip_addr: Optional[str] = None
-    logon_time: datetime
+    logon_time: Optional[datetime]
 
     class Config:
         orm_mode = True
