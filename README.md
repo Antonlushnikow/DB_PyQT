@@ -42,6 +42,6 @@
 
 <p>Загрузка сервера</p>
 <code>pip install --extra-index-url https://test.pypi.org/simple/ messenger-al-server</code>
-<br>
+<br><br>
 <p>Загрузка клиента</p>
 <code>pip install --extra-index-url https://test.pypi.org/simple/ messenger-al-client</code>
