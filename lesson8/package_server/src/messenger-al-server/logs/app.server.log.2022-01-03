@@ -1,0 +1,8 @@
+2022-01-03 15:10:34,959 - DEBUG      - debug
+2022-01-03 15:49:03,661 - DEBUG      - Вызов функции run с параметрами (<__main__.Server object at 0x000001335DC9F400>,), {}. Вызвана из файла C:\Users\anton\AppData\Local\Programs\Python\Python39\lib\threading.py, модуля __main__, функции run
+2022-01-03 15:49:03,662 - CRITICAL   - Cannot bind to :7777
+2022-01-03 15:50:20,301 - DEBUG      - Вызов функции run с параметрами (<__main__.Server object at 0x0000024FFE96F400>,), {}. Вызвана из файла C:\Users\anton\AppData\Local\Programs\Python\Python39\lib\threading.py, модуля __main__, функции run
+2022-01-03 15:50:20,301 - CRITICAL   - Cannot bind to :7777
+2022-01-03 15:51:44,633 - DEBUG      - Вызов функции run с параметрами (<__main__.Server object at 0x000001685032F400>,), {}. Вызвана из файла C:\Users\anton\AppData\Local\Programs\Python\Python39\lib\threading.py, модуля __main__, функции run
+2022-01-03 15:51:44,633 - INFO       - Listen :7777
+2022-01-03 21:09:14,227 - DEBUG      - debug

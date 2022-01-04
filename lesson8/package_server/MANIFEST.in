@@ -1,0 +1,3 @@
+include src\main.py
+include src\api_server.py
+exclude src\migrations
