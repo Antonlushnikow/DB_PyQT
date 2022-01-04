@@ -36,4 +36,12 @@
 
 <h3>Домашнее задание 7</h3>
 <p><b>Папка lesson7</b></p>
-<p>В разработке</p>
+<p>Добавлена документация</p>
+
+<h3>Домашнее задание 8</h3>
+
+<p>Загрузка сервера</p>
+<code>pip install --extra-index-url https://test.pypi.org/simple/ messenger-al-server</code>
+<br>
+<p>Загрузка клиента</p>
+<code>pip install --extra-index-url https://test.pypi.org/simple/ messenger-al-client</code>
